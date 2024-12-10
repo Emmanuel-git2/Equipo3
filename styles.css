@@ -135,3 +135,21 @@ footer a img {
   width: 24px;
   height: 24px;
 }
+#Elsy{
+    background-color: #ffffff; /* Azul */
+    border-radius: 10px;
+    box-shadow: 0 0 20px #0de3ff;
+    animation: glowing 2s infinite;
+    
+}
+@keyframes glowing {
+    0% {
+        box-shadow: 0 0 5px #1e90ff;
+    }
+    50% {
+        box-shadow: 0 0 20px #1e90ff, 0 0 40px #1e90ff;
+    }
+    100% {
+        box-shadow: 0 0 5px #1e90ff;
+    }
+}
