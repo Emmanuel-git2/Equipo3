@@ -138,10 +138,21 @@ footer a img {
 .card{
     background-color: #ffffff; /* Azul */
     border-radius: 10px;
-    box-shadow: 0 0 20px #0de3ff;
+    box-shadow: 0 0 20px #0de3ffc7;
     animation: glowing 2s infinite;
     
 }
+
+.card-title{
+    text-align: center;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 400px; 
+    object-fit: cover;
+}
+
 
 @keyframes glowing {
     0% {
