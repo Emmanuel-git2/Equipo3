@@ -1,0 +1,197 @@
+/* Estilos para la barra de navegación */
+.navbar-custom {
+    background-color: #F2CC0F;
+    color: black;
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px; /* Añade padding para permitir que la barra crezca */
+}
+
+.navbar-custom .navbar-brand {
+    font-family: 'Grown', serif;
+    font-size: 1.5rem;
+    color: #ff5733;
+}
+
+.navbar-custom .navbar-nav .nav-link {
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+}
+
+.navbar-custom .nav-link-custom {
+    background-color: transparent;
+    color: #007bff;
+    border: 2px solid transparent;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.nav-link-custom:hover {
+    background-color: white;
+}
+
+.botones-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los botones se envuelvan */
+    justify-content: center;
+    align-items: center;
+}
+
+.botones-container .btn {
+    background-color: #BF60A6;
+    color: white;
+    border: 2px solid white;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    margin-left: 10px;
+}
+
+.btn:hover {
+    background-color: white;
+    color: #BF60A6;
+    border-color: #BF60A6;
+}
+
+/* Estilo para los enlaces de navegación */
+.nav-link-custom {
+    background-color: transparent;
+    color: #007bff;
+    border: 2px solid transparent;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+ 
+.nav-link-custom:hover {
+    background-color: white;
+}
+
+/* Aislar estilos de los botones */
+.navbar-nav .nav-item .btn-entrar, .navbar-nav .nav-item .btn-registrarse {
+    background-color: inherit !important;
+    color: inherit !important;
+    border-color: inherit !important;
+    transition: none !important;
+}
+
+/* Titulo Grande y Subtitulos */
+.titulo-principal {
+    color: black;
+}
+
+.subtitulo {
+    color: black;
+}
+
+.fondo-personalizado {
+    background-color: whitesmoke;
+    padding: 50px 0;
+}
+
+/* Estilo Pie de Página */
+footer {
+    background-color: #BF60A6;
+    color: black;
+    padding: 20px 0;
+}
+
+footer h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer ul li {
+    margin-bottom: 8px;
+}
+
+footer a img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Estilos para las tarjetas */
+.card {
+    background-color: #ffffff; /* Azul */
+    border-radius: 10px;
+    box-shadow: 0 0 20px #0de3ffc7;
+    animation: glowing 2s infinite;
+}
+
+.card-title {
+    text-align: center;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+@keyframes glowing {
+    0% {
+        box-shadow: 0 0 5px #1e90ff;
+    }
+    50% {
+        box-shadow: 0 0 20px #1e90ff, 0 0 40px #1e90ff;
+    }
+    100% {
+        box-shadow: 0 0 5px #1e90ff;
+    }
+}
+
+/* Barra de Navegacion responsiva */
+@media (max-width: 768px) {
+    .navbar-custom .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .navbar-custom .nav-link-custom {
+        font-size: 0.9rem;
+        padding: 10px; /* Aumenta el padding para mejorar la usabilidad en dispositivos táctiles */
+    }
+
+    .botones-container {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .botones-container .btn {
+        width: 100%;
+        margin: 5px 0;
+        font-size: 1rem;
+    }
+
+    .navbar-nav {
+        text-align: center;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-custom .navbar-brand {
+        font-size: 1rem;
+    }
+
+    .navbar-custom .nav-link-custom {
+        font-size: 0.8rem;
+        padding: 5px; /* Reducir el padding para pantallas pequeñas */
+    }
+
+    .botones-container .btn {
+        font-size: 0.8rem;
+        padding: 10px;
+    }
+
+    .navbar-nav {
+        text-align: center;
+    }
+}
