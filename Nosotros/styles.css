@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Estilos para la barra de navegación */
 .navbar-custom {
     background-color: #F2CC0F;
@@ -119,22 +120,177 @@ footer a img {
 
 /* Estilos para las tarjetas */
 .card {
+=======
+/* Estilos de Fuentes */
+
+h1, h2, h3, h4, h5, h6 { 
+    font-family: 'Grown', serif; 
+}
+
+body { 
+    font-family: 'Montserrat', sans-serif; 
+}
+
+/* Colores de Barra de Navegacion */
+
+.navbar-custom {
+    background-color: #F2CC0F; 
+    color: black; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    height: 60px; 
+}
+
+.navbar-custom .navbar-nav .nav-link {
+    color: black; /* Color de los enlaces de navegación */
+}
+
+.letra-b, .letra-m { 
+    font-size: 2rem; 
+    color: #ff5733; 
+    line-height: 60px;
+}
+
+.letra-b { 
+    color: #F22E2E; 
+    font-size: 3rem;
+} 
+
+.letra-m { 
+    color: #F2E527;
+    font-size: 3rem;
+}
+
+/* Estilo para el botón 'Entrar' */
+.btn-entrar {
+    background-color: #BF60A6; 
+    color: white; 
+    border: 2px solid white; 
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    z-index: 1; 
+}
+
+.btn-entrar:hover {
+    background-color: white; 
+    color: #BF60A6; 
+    border-color: #BF60A6; 
+}
+
+/* Estilo para el botón 'Registrarse' */
+.btn-registrarse {
+    background-color: #BF60A6; 
+    color: white; 
+    border: 2px solid white; 
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+    margin-left: 10px; 
+    z-index: 1;
+}
+
+.btn-registrarse:hover {
+    background-color: white;
+    color: #BF60A6; 
+    border-color: #BF60A6; 
+}
+
+/* Estilo para los enlaces de navegación */ 
+.nav-link-custom { 
+    background-color: transparent; 
+    color: #007bff; 
+    border: 2px solid transparent; 
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+    padding: 5px 10px;
+    border-radius: 5px; 
+} 
+    
+.nav-link-custom:hover { 
+    background-color: white; 
+}
+   
+
+/* Aislar estilos de los botones */
+.navbar-nav .nav-item .btn-entrar, .navbar-nav .nav-item .btn-registrarse {
+    background-color: inherit !important; 
+    color: inherit !important; 
+    border-color: inherit !important; 
+    transition: none !important; 
+}
+
+/* Titulo Grande y Subtitulos */
+
+.titulo-principal {
+    color: black; 
+} 
+
+.subtitulo { 
+    color: black; 
+
+}  
+
+.fondo-personalizado { 
+    background-color: whitesmoke; 
+    padding: 50px 0; 
+}
+
+/*  Estilo Pie de Pag */
+
+footer { 
+    background-color: #BF60A6; 
+    color: black; 
+    padding: 20px 0; 
+}
+
+footer h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer ul li {
+  margin-bottom: 8px;
+}
+
+footer a img {
+  width: 24px;
+  height: 24px;
+}
+.card{
+>>>>>>> d89e953d94d74e6055e531e2bbcdbf4df0d0368c
     background-color: #ffffff; /* Azul */
     border-radius: 10px;
     box-shadow: 0 0 20px #0de3ffc7;
     animation: glowing 2s infinite;
+<<<<<<< HEAD
 }
 
 .card-title {
+=======
+    
+}
+
+.card-title{
+>>>>>>> d89e953d94d74e6055e531e2bbcdbf4df0d0368c
     text-align: center;
 }
 
 .card-img-top {
     width: 100%;
+<<<<<<< HEAD
     height: 400px;
     object-fit: cover;
 }
 
+=======
+    height: 400px; 
+    object-fit: cover;
+}
+
+
+>>>>>>> d89e953d94d74e6055e531e2bbcdbf4df0d0368c
 @keyframes glowing {
     0% {
         box-shadow: 0 0 5px #1e90ff;
@@ -145,6 +301,7 @@ footer a img {
     100% {
         box-shadow: 0 0 5px #1e90ff;
     }
+<<<<<<< HEAD
 }
 
 /* Barra de Navegacion responsiva */
@@ -195,3 +352,6 @@ footer a img {
         text-align: center;
     }
 }
+=======
+}
+>>>>>>> d89e953d94d74e6055e531e2bbcdbf4df0d0368c
