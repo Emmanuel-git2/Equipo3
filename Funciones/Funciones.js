@@ -21,7 +21,7 @@ function mostrarHeader() {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"
+              <a class="nav-link active" aria-current="page" href="../Nosotros/nosotros.html"
                 >Nosotros</a
               >
             </li>
@@ -36,7 +36,7 @@ function mostrarHeader() {
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"
+              <a class="nav-link active" aria-current="page" href="../Contacto/contacto.html""
                 >Contacto</a
               >
             </li>
