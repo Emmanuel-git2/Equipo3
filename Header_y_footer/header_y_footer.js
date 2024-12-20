@@ -95,8 +95,10 @@ function headerAndFooter() {
     "beforeend",
     `
       <footer>
+
       <nav class="navbar navbar-expand static-bottom footer">
         <div class="container-fluid flex-column">
+
           <div class="navbar-collapse justify-content-center" id="div-icons">
             <ul class="navbar-nav mb-2 mb-lg-0">
               <li>
@@ -127,18 +129,21 @@ function headerAndFooter() {
             </ul>
           </div>
   
+
           <div class="navbar-collapse">
             <div class="d-flex flex-column justify-content-center" id="div-generation">
               <a href="https://mexico.generation.org/">
-                <img src="https://mexico.generation.org/wp-content/uploads/2019/08/Generation_Mexico_logo_WHITE.svg" width="100">
+                <img src="https://mexico.generation.org/wp-content/uploads/2019/08/Generation_Mexico_logo_WHITE.svg" id="imgGeneration">
               </a>
               <p class="p-footer">
                 © 2024 Proyecto para el bootcamp Generation MX
               </p>
             </div>
           </div>
+
         </div>
       </nav>
+
       </footer>
 
     <!-- Script Bootstrap -->

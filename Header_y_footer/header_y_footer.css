@@ -1,12 +1,15 @@
+/* declaramos los colores como variables para facilitar su uso */
 :root {
   --background-rosa: #bf60a6;
   --background-amarillo: #f2cc0f;
   --button-color: #bf60a6;
 }
+
 .navbar {
   background-color: var(--background-amarillo);
   font-family: "Montserrat";
 }
+
 .letra-b,
 .letra-m {
   font-size: 2rem;
