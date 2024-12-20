@@ -1,0 +1,61 @@
+/* declaramos los colores como variables para facilitar su uso */
+:root {
+  --background-rosa: #bf60a6;
+  --background-amarillo: #f2cc0f;
+  --button-color: #bf60a6;
+}
+
+.navbar {
+  background-color: var(--background-amarillo);
+  font-family: "Montserrat";
+}
+
+.letra-b,
+.letra-m {
+  font-size: 2rem;
+  color: #ff5733;
+  line-height: 60px;
+}
+
+.letra-b {
+  color: #f22e2e;
+  font-size: 3rem;
+}
+
+.letra-m {
+  color: #f2e527;
+  font-size: 3rem;
+}
+
+.button {
+  background-color: var(--button-color);
+  color: white;
+  border: 2px solid white;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  border-radius: 5px; 
+  padding: 6px 12px;
+  margin-right: 4px;
+  
+}
+
+.footer {
+  background-color: var(--background-rosa);
+  box-sizing: content-box;
+
+}
+
+.footer-icon{
+  color: white;
+  font-size: 2rem;
+  padding-inline: 20px;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.p-footer {
+color: white;
+}
+
+#div-generation {
+  align-items: center;
+}
