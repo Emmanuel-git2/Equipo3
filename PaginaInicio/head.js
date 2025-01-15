@@ -27,7 +27,7 @@ function headerAndFooter() {
     />
 
     <!-- Styles Footer and Header -->
-    <link rel="stylesheet" href="../Header_y_footer/header_y_footer.css" />
+    <link rel="stylesheet" href="stylesFooterAndHeader.css" />
     `
   );
 
@@ -107,6 +107,11 @@ function headerAndFooter() {
                 </a>
               </li>
               <li>
+                <a href="https://git-scm.com/" class="footer-icon"">
+                  <i class="bi bi-git"></i>
+                </a>
+              </li>
+              <li>
                 <a href="https://x.com/?lang=es" class="footer-icon"">
                   <i class="bi bi-twitter-x"></i>
                 </a>
@@ -131,7 +136,7 @@ function headerAndFooter() {
                 <img src="https://mexico.generation.org/wp-content/uploads/2019/08/Generation_Mexico_logo_WHITE.svg" id="imgGeneration">
               </a>
               <p class="p-footer">
-                © 2025 Proyecto para el bootcamp Generation MX
+                © 2024 Proyecto para el bootcamp Generation MX
               </p>
             </div>
           </div>
@@ -152,3 +157,31 @@ function headerAndFooter() {
 }
 
 headerAndFooter();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
