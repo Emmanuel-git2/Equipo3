@@ -81,8 +81,8 @@ function headerAndFooter() {
                   >
                 </li>
               </ul>
-              <button class="button d-flex mb-2">Entrar</button>
-              <button class="button d-flex mb-2">Registrarse</button>
+              <button class="button d-flex mb-2" onclick="redirectToLogin()">Entrar</button>
+              <button class="button d-flex mb-2" onclick="redirectToRegister()">Registrarse</button>
             </div>
           </div>
         </nav>
@@ -151,4 +151,14 @@ function headerAndFooter() {
   );
 }
 
+
+function redirectToRegister() {
+  window.location.href = "../RegistroUsuarios/RegistroUsuarios.html";
+}
+
+function redirectToLogin() {
+  window.location.href = "../Login/login.html";
+}
+
 headerAndFooter();
+
