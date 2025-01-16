@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plantilla</title>
+    <title>Contacto</title>
+    <!-- Archivo CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <!-- Horizon y Montserrat Classic -->
 <!-- <link href="https://fonts.googleapis.com/css2?family=Horizon&family=Montserrat+Classic&display=swap" rel="stylesheet"> -->
 <!-- Archivo CSS -->
@@ -14,7 +16,7 @@
 <body>
     <!-- Contenido de la página -->
     <div class="container mt-5">
-        <h1 class="text-center mb-4">¡Queremos escucharte! Contáctanos</h1>
+        <h1 class="text-center mb-4">Contáctanos</h1>
 
         <!-- Formulario de contacto -->
         <form id="contactForm">
@@ -76,41 +78,45 @@
         </div>
     </div>
 
-    <!-- Modal de éxito -->
+<!-- Modal de éxito -->
 <div class="modal" tabindex="-1" id="successModal">
-    <div class="modal-dialog">
+  <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">¡Formulario Enviado!</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>Tu mensaje ha sido enviado correctamente. ¡Gracias por contactarnos!</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        </div>
+          <div class="modal-header">
+              <h5 class="modal-title">¡Formulario Enviado!</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <!-- Corregido el botón de cierre -->
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <p>Tu mensaje ha sido enviado correctamente. ¡Gracias por contactarnos!</p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> <!-- Corregido el botón de cierre -->
+          </div>
       </div>
-    </div>
   </div>
+</div>
 
-  <!-- Modal de error -->
+<!-- Modal de error -->
 <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+  <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="errorModalLabel">¡Error al enviar!</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Hubo un problema al enviar el correo. Por favor, intenta nuevamente más tarde.
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        </div>
+          <div class="modal-header">
+              <h5 class="modal-title" id="errorModalLabel">¡Error al enviar!</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <!-- Corregido el botón de cierre -->
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              Hubo un problema al enviar el correo. Por favor, intenta nuevamente más tarde.
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> <!-- Corregido el botón de cierre -->
+          </div>
       </div>
-    </div>
   </div>
+</div>
 
         <!--CDN de email.js, dentro del init se pone la llave pública del perfil de emailjs-->
         <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js'></script>
@@ -120,6 +126,12 @@
               emailjs.init('<TfFM7gSYBRFC3ABEP>'); 
            })();
         </script>
+
+        <!-- Archivos JavaScript de jQuery, Popper.js y Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> <!-- Usar la versión completa -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
     <script src="./JavaScript/main.js"></script> 
     
