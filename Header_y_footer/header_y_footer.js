@@ -39,7 +39,7 @@ function headerAndFooter() {
          <header>
         <nav class="navbar navbar-expand-md">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#"
+            <a class="navbar-brand" href="PaginaInicio.html"
               ><span class="letra-b">B</span><span class="letra-m">M</span></a
             >
             <button
