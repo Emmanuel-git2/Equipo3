@@ -98,16 +98,16 @@ function sendEmail() {
     console.log(formData);  // Aquí se mostrarán los datos antes de enviarlos
 
 
-    // Enviar el correo utilizando EmailJS
-    emailjs.send(serviceID, templateID, formData)
-        .then(function(response) {
-            // Mostrar el modal de éxito
-            var myModal = new bootstrap.Modal(document.getElementById('successModal'));
-            myModal.show();
-        }, function(error) {
-            // Mostrar el modal de error
-            var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
-            errorModal.show();
-        });
+   // Enviar el correo utilizando EmailJS
+emailjs.send(serviceID, templateID, formData)
+.then(function(response) {
+    // Mostrar el modal de éxito
+    var myModal = new bootstrap.Modal(document.getElementById('successModal'));
+    myModal.show();
+}, function(error) {
+    // Mostrar el modal de error
+    var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+    errorModal.show();
+});
 }
 
