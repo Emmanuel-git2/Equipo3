@@ -1,61 +1,119 @@
 /* Estilos de Fuentes */
-
-h1, h2, h3, h4, h5, h6 { 
-    font-family: 'Grown', serif; 
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Grown', serif;
 }
 
-body { 
-    font-family: 'Montserrat', sans-serif; 
+body {
+    font-family: 'Montserrat', sans-serif;
 }
 
-
-/* Estilo para los enlaces de navegación */ 
-.nav-link-custom { 
-    background-color: transparent; 
-    color: #007bff; 
-    border: 2px solid transparent; 
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+/* Estilo para los enlaces de navegación */
+.nav-link-custom {
+    background-color: transparent;
+    color: #007bff;
+    border: 2px solid transparent;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     padding: 5px 10px;
-    border-radius: 5px; 
-} 
-    
-.nav-link-custom:hover { 
-    background-color: white; 
+    border-radius: 5px;
 }
-   
 
-
+.nav-link-custom:hover {
+    background-color: white;
+}
 
 /* Titulo Grande y Subtitulos */
-
 .titulo-principal {
-    color: black; 
-} 
+    color: black;
+}
 
-.subtitulo { 
-    color: black; 
-
-}  
-
-.fondo-personalizado { 
-    background-color: whitesmoke; 
-    padding: 50px 0; 
+.subtitulo {
+    color: black;
+    font-size: 1.5em !important; /* Asegura que este estilo se aplique */
+    font-weight: bold !important; /* Asegura que también sea más grueso */
+    text-align: center; /* Asegura que esté centrado */
 }
 
 
-.card{
-    background-color: #ffffff; /* Azul */
-    border-radius: 10px;
-    box-shadow: 0 0 20px #0de3ffc7;
-    animation: glowing 2s infinite;
-    
+/* Fondo personalizado */
+.fondo-personalizado {
+    background-color: rgba(13, 227, 255, 0.20); /* Cambia el 0.78 a otro valor para ajustar la transparencia */
+    padding: 50px 0;
+    margin-bottom: 20px; /* Añade separación entre bloques */
 }
 
-.card-title{
+/* Ajuste de las tarjetas */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Estilos para las tarjetas */
+.card {
     text-align: center;
+    background-color: #d1c4e9; /* Color de fondo para las tarjetas */
+    border-radius: 15px;
+    box-shadow: 0 0 20px #0de3ffc7;
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transición suave para el sombreado y el tamaño */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: calc(90% - 1px); /* Ajusta el valor para que las tarjetas sean más anchas */
+    margin: 20px;
+    box-sizing: border-box;
+}
+
+
+.card:hover {
+    transform: scale(1.05); /* Aumenta el tamaño de la tarjeta */
+    box-shadow: 0 0 30px #9575cd; /* Cambia el sombreado al resaltar */
+}
+
+.card-title {
+    text-align: center;
+    white-space: nowrap; /* Prevenir quiebre de texto */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card-img-top {
     width: 100%;
-    object-fit: cover;
+    height: auto; /* Ajusta la altura automáticamente */
+    max-height: 50%; /* Limita la altura máxima para las imágenes */
+    object-fit: cover; /* Ajusta las imágenes sin recortarlas */
+    border-radius: 50%; /* Convertir la imagen en un círculo */
+    padding: 10px; /* Espaciado interno */
+    box-sizing: border-box;
+    position: relative;
 }
+
+.card-img-top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%; /* Mantener la forma circular */
+    box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.5); /* Sombra difuminada con degradado transparente */
+    pointer-events: none; /* Permitir interacción con la imagen */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    padding: 20px; /* Espaciado interno */
+    overflow: hidden; /* Ocultar contenido que exceda el tamaño */
+    text-overflow: ellipsis; /* Puntos suspensivos para texto largo */
+}
+
+/* Media query para pantallas medianas */
+@media (max-width: 768px) {
+    .card {
+        width: calc(100% - 40px); /* Una columna para pantallas medianas y pequeñas */
+    }
+}
+
