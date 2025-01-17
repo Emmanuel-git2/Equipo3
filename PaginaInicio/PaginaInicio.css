@@ -196,3 +196,13 @@ main{
   }
 
 
+  .card-img-top {
+    height: 200px; 
+    object-fit: cover; 
+    width: 100%; 
+}
+
+img[alt="Fondo Azul"] {
+    border-radius: 0; /* Quitar bordes redondeados */
+}
+

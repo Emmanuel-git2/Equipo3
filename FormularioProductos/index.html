@@ -18,6 +18,9 @@
         <div id="alert" class="alert alert-danger d-none" role="alert">
             <p id="alertText"></p>
         </div>
+        <div id="alertSuccess" class="alert alert-success d-none" role="alert">
+            Producto guardado correctamente.
+        </div>
         
         <!-- Formulario de creación de producto -->
         <form id="productForm">
@@ -47,7 +50,7 @@
             
             <div class="mb-3">
                 <label for="productImage" class="form-label">URL de la Imagen</label>
-                <input type="url" class="form-control" id="productImage" required>
+                <input type="url" class="form-control" id="productImage" required readonly>
                 <div class="invalid-feedback">
                     La URL de la imagen es obligatoria y debe ser válida.
                 </div>
@@ -65,71 +68,25 @@
         </form>
     </div>
 
+    <h3 class="mt-5">Productos Agregados</h3>
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Imagen</th>
+            </tr>
+        </thead>
+        <tbody id="productosTable">
+            <!-- Aquí se mostrarán los productos -->
+        </tbody>
+    </table>
+
+    <script src="formulario.js"></script>
+
     <!-- Script de Cloudinary -->
     <script src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
-
-    <!-- Script JS para validación y manejo de datos -->
-    <script>
-        // Función para subir imagen a Cloudinary
-        document.getElementById('uploadBtn').addEventListener('click', function () {
-            cloudinary.openUploadWidget(
-                {
-                    cloudName: 'dy6sopjv3',  // Reemplaza con tu Cloud Name
-                    uploadPreset:'uw_formulario', // Reemplaza con tu Upload Preset
-                    sources: ['local', 'url', 'camera'],
-                    multiple: false,
-                    showAdvancedOptions: false,
-                    cropping: true,
-                    maxFileSize: 2000000, // Limitar tamaño de archivo a 2MB
-                },
-                function (error, result) {
-                    if (error) {
-                        console.error('Error al subir la imagen:', error);
-                        alert('Error al subir la imagen: ' + error.message);
-                    } else if (result && result.event === "success") {
-                        const imageUrl = result.info.secure_url;
-                        const productImageField = document.getElementById("productImage");
-
-                        if (productImageField) {
-                            productImageField.value = imageUrl; // Asignar URL al campo del formulario
-                            document.getElementById("imageUrl").textContent = imageUrl; // Mostrar la URL
-                            console.log("Imagen subida exitosamente:", imageUrl);
-                        } else {
-                            console.error("No se encontró el campo de imagen.");
-                        }
-                    }
-                }
-            );
-        });
-
-        // Validación y creación de objeto JSON al enviar el formulario
-        document.getElementById('submitBtn').addEventListener('click', function () {
-            const form = document.getElementById('productForm');
-            if (form.checkValidity() === false) {
-                form.classList.add('was-validated');
-                document.getElementById('alertText').textContent = "Por favor, complete todos los campos.";
-                document.getElementById('alert').classList.remove('d-none');
-            } else {
-                const productData = {
-                    name: document.getElementById('productName').value,
-                    description: document.getElementById('productDescription').value,
-                    price: parseFloat(document.getElementById('productPrice').value),
-                    image: document.getElementById('productImage').value
-                };
-
-                console.log('Producto creado:', productData);
-
-                // Simulación de enviar al servidor
-                alert("Producto agregado con éxito");
-
-                // Limpiar formulario
-                form.reset();
-                form.classList.remove('was-validated');
-                document.getElementById('alert').classList.add('d-none'); // Ocultar alerta
-            }
-        });
-    </script>
-
 </body>
 
 </html>
