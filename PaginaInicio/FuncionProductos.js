@@ -21,16 +21,16 @@ function agregarProducto(item) {
 }
 
 // Agregar productos estáticos
-agregarProducto({ name: 'Husky', img: 'imagenes/Husky.jpg', description: 'Bloques de construcción perro Husky' });
-agregarProducto({ name: 'Uvas', img: 'imagenes/Uvas.jpg', description: 'Bloques de construcción uvas' });
-agregarProducto({ name: 'Frutas', img: 'imagenes/Frutas.jpg', description: 'Bloques de construcción frutas' });
-agregarProducto({ name: 'Kiwi', img: 'imagenes/Kiwi.jpg', description: 'Bloques de construcción de kiwi' });
-agregarProducto({ name: 'Aguacate', img: 'imagenes/Aguacate.jpg', description: 'Bloques de construcción de Aguacate' });
-agregarProducto({ name: 'Pajarito Rojo', img: 'imagenes/PajaroRojo.jpg', description: 'Bloques de construcción de pajarito' });
-agregarProducto({ name: 'Pajarito Azul y Blanco', img: 'imagenes/PajaroAzulConBlanco.jpg', description: 'Bloques de construcción de Pajarito blanco con Azul' });
-agregarProducto({ name: 'Ballena', img: 'imagenes/BallenaNegra.jpg', description: 'Bloques de construcción de ballena' });
-agregarProducto({ name: 'Pingüino', img: 'imagenes/Pinguino.jpg', description: 'Bloques de construcción de pingüino' });
-agregarProducto({ name: 'Cactus', img: 'imagenes/Cactus.jpg', description: 'Bloques de construcción de cactus' });
+agregarProducto({ name: 'Husky', img: 'imagenes/Husky.jpg', description: 'Bloques de construcción perro Husky', price: 200});
+agregarProducto({ name: 'Uvas', img: 'imagenes/Uvas.jpg', description: 'Bloques de construcción uvas', price: 200});
+agregarProducto({ name: 'Frutas', img: 'imagenes/Frutas.jpg', description: 'Bloques de construcción frutas', price: 168.99});
+agregarProducto({ name: 'Kiwi', img: 'imagenes/Kiwi.jpg', description: 'Bloques de construcción de kiwi', price: 200});
+agregarProducto({ name: 'Aguacate', img: 'imagenes/Aguacate.jpg', description: 'Bloques de construcción de Aguacate', price: 200});
+agregarProducto({ name: 'Pajarito Rojo', img: 'imagenes/PajaroRojo.jpg', description: 'Bloques de construcción de pajarito', price: 150});
+agregarProducto({ name: 'Pajarito Azul y Blanco', img: 'imagenes/PajaroAzulConBlanco.jpg', description: 'Bloques de construcción de Pajarito blanco con Azul', price: 150});
+agregarProducto({ name: 'Ballena', img: 'imagenes/BallenaNegra.jpg', description: 'Bloques de construcción de ballena', price: 180});
+agregarProducto({ name: 'Pingüino', img: 'imagenes/Pinguino.jpg', description: 'Bloques de construcción de pingüino', price: 200});
+agregarProducto({ name: 'Cactus', img: 'imagenes/Cactus.jpg', description: 'Bloques de construcción de cactus', price: 150});
 
 // Función para mostrar productos dinámicos (almacenados en localStorage)
 function mostrarProductosDinamicos() {

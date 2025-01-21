@@ -116,6 +116,9 @@ footer{
     font-size: 60px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+p{
+    font-size: 20px;
+}
 
 .card-img-overlay {
     border:#5cc8f2;    
@@ -130,6 +133,7 @@ main{
 
 .quienS{
     font-weight: bold;
+    font-size: 30px;
 }
 
 
@@ -143,6 +147,7 @@ main{
     background-color: var(--background-amarillo);
     font-family: "Montserrat";
   }
+  
   .letra-b,
   .letra-m {
     font-size: 2rem;
@@ -204,5 +209,12 @@ main{
 
 img[alt="Fondo Azul"] {
     border-radius: 0; /* Quitar bordes redondeados */
+}
+
+#Eslogan{
+    color: white;
+    text-shadow: 2px 2px 2px #5a5858;
+}
+   
 }
 
