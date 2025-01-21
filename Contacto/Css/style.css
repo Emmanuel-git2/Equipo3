@@ -10,9 +10,7 @@ body {
     font-size: calc(1rem + 0.5vw); /* Ajuste dinámico del tamaño */
 }
 
-* {
-    cursor: url("../imagenes/legocursor.png"), auto;
-  }
+
   
 
 /* Titulo Grande y Subtitulos */
