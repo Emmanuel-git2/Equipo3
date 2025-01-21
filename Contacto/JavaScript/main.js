@@ -1,3 +1,30 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const successModal = document.getElementById('successModal');
+    const errorModal = document.getElementById('errorModal');
+
+    // Manejadores para el modal de éxito
+    successModal.addEventListener('show.bs.modal', () => {
+        successModal.removeAttribute('aria-hidden');
+        successModal.removeAttribute('inert');
+    });
+
+    successModal.addEventListener('hide.bs.modal', () => {
+        successModal.setAttribute('aria-hidden', 'true');
+        successModal.setAttribute('inert', '');
+    });
+
+    // Manejadores para el modal de error
+    errorModal.addEventListener('show.bs.modal', () => {
+        errorModal.removeAttribute('aria-hidden');
+        errorModal.removeAttribute('inert');
+    });
+
+    errorModal.addEventListener('hide.bs.modal', () => {
+        errorModal.setAttribute('aria-hidden', 'true');
+        errorModal.setAttribute('inert', '');
+    });
+});
+
 // Inicializa EmailJS con tu clave pública
 emailjs.init("TfFM7gSYBRFC3ABEP"); // Reemplaza con tu clave pública
 
@@ -97,17 +124,24 @@ function sendEmail() {
     // Muestra los datos en la consola para asegurarte de que todo esté bien
     console.log(formData);  // Aquí se mostrarán los datos antes de enviarlos
 
-
-   // Enviar el correo utilizando EmailJS
-emailjs.send(serviceID, templateID, formData)
-.then(function(response) {
-    // Mostrar el modal de éxito
-    var myModal = new bootstrap.Modal(document.getElementById('successModal'));
-    myModal.show();
-}, function(error) {
-    // Mostrar el modal de error
-    var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
-    errorModal.show();
-});
+    // Enviar el correo utilizando EmailJS
+    emailjs.send(serviceID, templateID, formData)
+        .then(function(response) {
+            // Mostrar el modal de éxito
+            const myModal = new bootstrap.Modal(document.getElementById('successModal'));
+            myModal.show();
+        }, function(error) {
+            // Mostrar el modal de error
+            const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+            errorModal.show();
+        });
 }
+
+// Evento de 'Enter' para enviar el formulario
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        sendButton.click();
+    }
+});
+
 
