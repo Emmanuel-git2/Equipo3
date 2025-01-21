@@ -1,3 +1,7 @@
+* {
+  cursor: url("../Contacto/imagenes/legocursor.png"), auto;
+}
+
 /* declaramos los colores como variables para facilitar su uso */
 :root {
   --background-rosa: #bf60a6;
