@@ -1,0 +1,47 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+} 
+
+.titulo2{
+    background-color: #5CC8F2;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 60px;
+    text-shadow: 2px 2px 2px #5a5a65
+}
+
+#letraB{
+    color: #F22E2E;
+}
+
+#letraM{
+    color: #F2E527;
+}
+
+h2,h3 {
+    font-family: 'Grown', serif;
+    font-style:bold; 
+    background-color: #F2E527;
+    border-radius: 4px;
+    text-align: center;
+    border: 2px solid black;
+}
+
+.conceptos{
+    font-family: 'Grown', serif;
+    font-size: 18px;
+}
+
+button{
+        background-color: #BF60A6; 
+        color: white; 
+        border: 2px solid black; 
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+        margin-left: 10px; 
+        z-index: 1;
+        border-radius: 4px;
+}
+
+#productosTable,#productForm{
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+}
