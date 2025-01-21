@@ -110,4 +110,3 @@ emailjs.send(serviceID, templateID, formData)
     errorModal.show();
 });
 }
-
