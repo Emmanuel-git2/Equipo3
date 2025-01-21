@@ -41,14 +41,109 @@ label {
     margin-top: 10px !important;
 }
 
+.input-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-group-append {
+    display: flex;
+    align-items: center; 
+    margin-left: 10px;
+}
+
+.invalid-feedback {
+    margin-top: 5px;
+}
+
+.terms-link {
+    color: var(--button-color); 
+}
+
+.terms-link {
+    color: var(--button-color); /* Color del texto */
+    opacity: 2;
+    transition: opacity 0.3s ease; /* Transición suave */
+}
+
+/* Estilo al pasar el cursor sobre el enlace */
+.terms-link:hover {
+    opacity: 1; /* Se vuelve opaco al pasar el cursor */
+}
+
+/* Estilo al hacer clic en el enlace */
+.terms-link:active {
+    opacity: 0.7; /* Se vuelve translúcido al hacer clic */
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.modal-header {
+    background-color: #bf60a6;
+    color: white;
+    border-bottom: 2px solid #ccc;
+}
+
+.modal-footer {
+    background-color: #f4f4f9;
+    border-top: 2px solid #ccc;
+}
+
+
 .btn-primary:hover {
     background-color: #a84d91 !important;
     border-color: white !important;
     color: white !important;
 }
 
-.form-check-label {
-    color: var(--background-rosa);
+#gridCheck {
+    display: none; /* Oculta el checkbox original */
+}
+
+/* Estilo del contorno del checkbox */
+#gridCheck + label {
+    position: relative;
+    cursor: pointer;
+    font-size: 16px;
+    padding-left: 30px;
+    color: var(--background-rosa); 
+}
+
+/* Estilo del cuadro del checkbox */
+#gridCheck + label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--background-rosa);
+    border-radius: 4px;
+    background-color: #fff; 
+    transition: all 0.3s ease;
+}
+
+/* Estilo cuando el checkbox está marcado */
+#gridCheck:checked + label::before {
+    background-color: var(--background-rosa);
+    border-color: var(--background-rosa); 
+}
+
+/* Marca dentro del checkbox */
+#gridCheck:checked + label::after {
+    content: '\2713'; /* Símbolo de la palomita */
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    bottom: 10px;
+    right: 3px;
+
+    font-size: 16px;
+    color: #fff;
 }
 
 @media (max-width: 768px) {

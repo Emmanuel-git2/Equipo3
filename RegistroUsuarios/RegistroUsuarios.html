@@ -1,80 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="./estiloRegistro/estiloRegistro.css"> <!-- Enlace a la hoja de estilos registro usuarios -->
+    <link rel="stylesheet" href="../Header_y_footer/header_y_footer.css">
+    <link rel="stylesheet" href="./estiloRegistro/estiloRegistro.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <title>Registro Usuarios</title>
 </head>
 
 <body>
-    <div class="container">
-        <form>
-            <h2>Regístrate</h2>
+    <div class="container mt-5">
+        <form id="registrationForm">
+            <h2 class="mb-4">Regístrate</h2>
+
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="name">Nombre completo</label>
                     <input type="text" class="form-control" id="name" placeholder="Escribe tu nombre">
+                    <div class="invalid-feedback"></div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="userName">Nombre de usuario</label>
                     <input type="text" class="form-control" id="userName" placeholder="Escribe tu nombre de usuario">
+                    <div class="invalid-feedback"></div>
                 </div>
             </div>
+
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="numberPhone">Número de teléfono</label>
-                    <input type="tel" class="form-control" id="numberPhone" placeholder="10 dígitos">
+                    <input type="tel" class="form-control" id="numberPhone" placeholder="10 dígitos" pattern="\d{10}" maxlength="10">
+                    <div class="invalid-feedback"></div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="postCode">Código postal</label>
-                    <input type="number" class="form-control" id="postCode" placeholder="5 dígitos">
+                    <input type="text" class="form-control" id="postCode" placeholder="5 dígitos" maxlength="5">
+                    <div class="invalid-feedback"></div>
                 </div>
             </div>
+
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="email">Correo electrónico</label>
                     <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                    <div class="invalid-feedback"></div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="emailConfirm">Confirma tu correo</label>
                     <input type="email" class="form-control" id="emailConfirm" placeholder="name@example.com">
+                    <div class="invalid-feedback"></div>
                 </div>
             </div>
+
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="password">Crea una contraseña</label>
-                    <input type="password" class="form-control" id="password" placeholder="********">
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="password" placeholder="********">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div id="passwordStrength"></div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="passwordConfirm">Confirma tu contraseña</label>
                     <input type="password" class="form-control" id="passwordConfirm" placeholder="********">
+                    <div class="invalid-feedback"></div>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                        Acepto términos y condiciones
-                    </label>
-                </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" disabled>
+                <label class="form-check-label" for="gridCheck">
+                    He leído y acepto los 
+                    <a href="#" id="termsLink" class="terms-link">
+                        Términos y Condiciones
+                    </a>
+                </label>
             </div>
-            <button type="submit" class="btn btn-primary">Registrar</button>
+
+            <button type="submit" class="btn btn-primary" id="registerButton" disabled>Registrar</button>
         </form>
     </div>
+
+    <!-- Modal -->
+    <div class="modal" id="termsModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Términos y Condiciones</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3>1. Información Personal</h3>
+                    <p>Para crear una cuenta en BrickManía y realizar compras, deberás proporcionar la siguiente información:</p>
+                    <ul>
+                        <li>Nombre completo</li>
+                        <li>Número de teléfono</li>
+                        <li>Código postal</li>
+                        <li>Correo electrónico</li>
+                    </ul>
+
+                    <h3>2. Uso de los Datos</h3>
+                    <p>Al aceptar estos términos, autorizas el almacenamiento de los datos personales y financieros proporcionados, los cuales serán utilizados para:</p>
+                    <ul>
+                        <li>Procesar y realizar pagos de los productos adquiridos en nuestro ecommerce.</li>
+                        <li>Enviarte publicidad y promociones a tu correo electrónico.</li>
+                        <li>Gestionar tu perfil de usuario y las compras realizadas.</li>
+                    </ul>
+
+                    <h3>3. Responsabilidad</h3>
+                    <p>Como usuario, eres responsable de todas las compras realizadas a través de tu perfil. Si bien BrickManía implementa medidas de seguridad para proteger tus datos, no nos hacemos responsables por el uso indebido de tu cuenta por parte de terceros.</p>
+
+                    <h3>4. Territorios de Operación</h3>
+                    <p>BrickManía opera en los siguientes territorios:</p>
+                    <ul>
+                        <li>Mexico</li>
+                        <li>Estados Unidos</li>
+                    </ul>
+
+                    <h3>5. Aceptación de los Términos</h3>
+                    <p>Al crear una cuenta, confirmas que has leído y aceptas estos términos y condiciones. Si no estás de acuerdo con los mismos, no podrás registrarte ni realizar compras en BrickManía.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="acceptBtn">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Registro Exitoso -->
+<div class="modal" id="successModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Registro Exitoso</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¡Te has registrado exitosamente! Ahora puedes iniciar sesión.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="redirectButton">Ir a inicio de sesión</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <script src="../Header_y_footer/header_y_footer.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+    <script src="./FormularioRegistro/FormularioRegistro.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
