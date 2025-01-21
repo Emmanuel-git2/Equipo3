@@ -39,7 +39,7 @@ function headerAndFooter() {
          <header>
         <nav class="navbar navbar-expand-md">
           <div class="container-fluid">
-            <a class="navbar-brand" href="PaginaInicio.html"
+            <a class="navbar-brand" href="../PaginaInicio/PaginaInicio.html"
               ><span class="letra-b">B</span><span class="letra-m">M</span></a
             >
             <button
@@ -61,18 +61,13 @@ function headerAndFooter() {
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="../Categorias/categorias.html"
-                    >Categorias</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="../Ofertas/ofertas.html"
-                    >Ofertas</a
-                  >
-                </li>
-                <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="../Contacto/contacto.html"
                     >Contacto</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="../Categorias/categorias.html"
+                    >Categorías</a
                   >
                 </li>
                 <li class="nav-item">

@@ -14,11 +14,11 @@
   font-family: "Montserrat";
 }
 
-
-.letra-m {
-  font-size: 2rem;
-  color: #ff5733;
+.letra-b, .letra-m { 
+  font-size: 2rem; 
   line-height: 60px;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #6c6c71
 }
 
 .letra-b {
