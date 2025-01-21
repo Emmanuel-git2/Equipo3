@@ -27,7 +27,7 @@ function headerAndFooter() {
     />
 
     <!-- Styles Footer and Header -->
-    <link rel="stylesheet" href="stylesFooterAndHeader.css" />
+    <link rel="stylesheet" href="../Header_y_footer/header_y_footer.css" />
     `
   );
 
