@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () { 
+document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("registrationForm");
     const passwordField = document.getElementById("password");
     const passwordConfirmField = document.getElementById("passwordConfirm");
@@ -17,20 +17,42 @@ document.addEventListener("DOMContentLoaded", function () {
     const termsLink = document.getElementById("termsLink");
     const termsModal = document.getElementById("termsModal");
     const acceptBtn = document.getElementById("acceptBtn");
-    const checkbox = document.getElementById("gridCheck");
-    const termsLabel = document.getElementById("termsLabel");
+    const checkboxLabel = document.getElementById("checkboxLabel");
 
+    // Función para abrir el modal de términos y condiciones
     termsLink.addEventListener("click", function (event) {
         event.preventDefault();
         $('#termsModal').modal('show');
+        termsModal.removeAttribute("inert"); // Habilita la interacción con el modal
     });
-
+    
+    // Función para aceptar los términos y condiciones
     acceptBtn.addEventListener("click", function () {
         $('#termsModal').modal('hide');
-        checkbox.checked = true; // Marca el checkbox automáticamente
-        checkbox.disabled = false; // Habilita el checkbox
-        registerButton.disabled = false; // Habilita el botón de registro
+        gridCheck.checked = true; // Marca el checkbox automáticamente
+        gridCheck.disabled = false; // Habilita el checkbox para permitir interacción
+    
+        // Actualiza la opacidad del texto asociado al checkbox
+        checkboxLabel.style.opacity = "1"; // Hace visible el texto
+        checkboxLabel.classList.remove("disabled"); 
+    
+        // Deshabilita el enlace de términos y condiciones
+        termsLink.classList.add("disabled");
+        termsModal.setAttribute("inert", "true"); 
+    
+        // Verifica si el formulario es válido después de aceptar los términos
+        checkFormValidity();
     });
+
+    function initializeCheckboxLabel() {
+        if (gridCheck.checked) {
+            checkboxLabel.style.opacity = "1"; 
+        } else {
+            checkboxLabel.style.opacity = "0.5"; 
+        }
+    }
+    
+    initializeCheckboxLabel();
 
     // Función para habilitar o deshabilitar el botón de registro
     function checkFormValidity() {
@@ -63,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
         checkFormValidity();
     }
 
-    // Funciones de validación para cada campo
+    // Validaciones específicas para cada campo
     function validateName() {
         const name = nameField.value.trim();
         const isValid = name.split(" ").length >= 2 && name.split(" ").every(word => word.length >= 2);
@@ -78,10 +100,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function validatePhone() {
         const phone = numberPhoneField.value.trim();
-        const isValid = /^\d{10}$/.test(phone);
-        setValidationState(numberPhoneField, isValid, "El número de teléfono debe contener 10 dígitos.");
+        const isValid = /^\d{10}$/.test(phone) && 
+                        !/^(.)\1{9}$/.test(phone) && 
+                        !/^(0123456789|9876543210)$/.test(phone);   
+        setValidationState(numberPhoneField, isValid, "El número de teléfono debe ser válido y a 10 dígitos.");
     }
-
+    
     function validatePostCode() {
         const postCode = postCodeField.value.trim();
         const isValid = /^\d{5}$/.test(postCode);
@@ -101,7 +125,8 @@ document.addEventListener("DOMContentLoaded", function () {
         setValidationState(emailConfirmField, isValid, "Los correos electrónicos no coinciden.");
     }
 
-    function validatePassword(field) { 
+    // Función integrada para validar la contraseña
+    function validatePassword(field) {
         const value = field.value;
         const errorElement = field.nextElementSibling.nextElementSibling; // Para el mensaje de error
         const minLength = 10;
@@ -157,7 +182,40 @@ document.addEventListener("DOMContentLoaded", function () {
             type === "password" ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
     }
 
-    // Guardar datos en localStorage y redirigir a login.html
+    function clearForm() {
+        // Limpiar los campos de entrada
+        nameField.value = '';
+        userNameField.value = '';
+        numberPhoneField.value = '';
+        postCodeField.value = '';
+        emailField.value = '';
+        emailConfirmField.value = '';
+        passwordField.value = '';
+        passwordConfirmField.value = '';
+        gridCheck.checked = false;
+    
+        // Limpiar las clases de validación
+        const fields = [
+            nameField, 
+            userNameField, 
+            numberPhoneField, 
+            postCodeField, 
+            emailField, 
+            emailConfirmField, 
+            passwordField, 
+            passwordConfirmField
+        ];
+    
+        fields.forEach(field => {
+            field.classList.remove("is-valid", "is-invalid");
+            const errorElement = field.nextElementSibling;
+            if (errorElement) {
+                errorElement.textContent = ''; // Limpiar los mensajes de error
+            }
+        });
+    }
+
+    //Función para crear arreglo en formato JSON, guardar en localStorage y redirigir a login
     function saveDataToLocalStorageAndRedirect() {
         const userData = {
             name: nameField.value.trim(),
@@ -167,15 +225,19 @@ document.addEventListener("DOMContentLoaded", function () {
             email: emailField.value.trim(),
             password: passwordField.value.trim(), 
         };
-
-        localStorage.setItem("userData", JSON.stringify(userData));
-        console.log("Datos guardados:", userData);
-
-        // Mostrar el modal de éxito antes de redirigir
+    
+        // Guardar datos en localStorage
+        const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+        existingUsers.push(userData);
+        localStorage.setItem("users", JSON.stringify(existingUsers));
+        console.log("Usuarios guardados:", existingUsers);
+    
         $('#successModal').modal('show');
+        
+        document.getElementById("successModal").removeAttribute("inert");
     }
-
-    // Evento para el botón del modal
+    
+    // Función para redirigir al login cuando el usuario hace clic en "Ir al Login"
     const redirectButton = document.getElementById("redirectButton");
     if (redirectButton) {
         redirectButton.addEventListener("click", function () {
@@ -185,54 +247,38 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Eventos de validación
-    nameField.addEventListener("input", function() {
-        validateName();
-        checkFormValidity(); // Verifica si el formulario es válido
-    });
-    userNameField.addEventListener("input", function() {
-        validateUserName();
-        checkFormValidity(); // Verifica si el formulario es válido
-    });
-    numberPhoneField.addEventListener("input", function() {
-        validatePhone();
-        checkFormValidity(); // Verifica si el formulario es válido
-    });
-    postCodeField.addEventListener("input", function() {
-        validatePostCode();
-        checkFormValidity(); // Verifica si el formulario es válido
-    });
-    emailField.addEventListener("input", function() {
+    
+    nameField.addEventListener("input", validateName);
+    userNameField.addEventListener("input", validateUserName);
+    numberPhoneField.addEventListener("input", validatePhone);
+    postCodeField.addEventListener("input", validatePostCode);
+  
+    emailField.addEventListener("input", function () {
         validateEmail();
-        validateEmailConfirm(); // Revalida el campo de confirmación de correo
-        checkFormValidity(); // Verifica si el formulario es válido
-    });
-    
-    emailConfirmField.addEventListener("input", function() {
         validateEmailConfirm();
-        checkFormValidity(); // Verifica si el formulario es válido
     });
-    
-    passwordField.addEventListener("input", function() {
+    emailConfirmField.addEventListener("input", validateEmailConfirm);
+    passwordField.addEventListener("input", function () {
         validatePassword(passwordField);
-        validatePasswordConfirm(); // Revalida el campo de confirmación de contraseña
-        checkFormValidity(); // Verifica si el formulario es válido
-    });
-    
-    passwordConfirmField.addEventListener("input", function() {
         validatePasswordConfirm();
-        checkFormValidity(); // Verifica si el formulario es válido
     });
-    
-    gridCheck.addEventListener("change", function() {
-        checkFormValidity(); // Verifica si el formulario es válido
-    });
+    passwordConfirmField.addEventListener("input", validatePasswordConfirm);
+    gridCheck.addEventListener("change", checkFormValidity);
+
+    nameField.addEventListener("blur", validateName);
+    userNameField.addEventListener("blur", validateUserName);
+    numberPhoneField.addEventListener("blur", validatePhone);
+    postCodeField.addEventListener("blur", validatePostCode);
 
     // Guardar datos y redirigir al hacer clic en Registrar
+    
+    if (registerButton) {
     registerButton.addEventListener("click", function (event) {
         event.preventDefault();
         if (form.checkValidity()) {
             saveDataToLocalStorageAndRedirect();
+            clearForm();
         }
     });
-
+  }
 });

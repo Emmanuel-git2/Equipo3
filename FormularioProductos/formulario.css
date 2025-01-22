@@ -1,6 +1,44 @@
+:root {
+    --background-rosa: #bf60a6;
+    --background-amarillo: #f2cc0f;
+    --button-color: #bf60a6;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
+    margin: 2px;
 } 
+
+table{    
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+select {
+    color: white !important;
+    background-color: #9c0b76 !important;
+    border: 2px solid var(--background-rosa) !important;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+    padding: 8px;
+    font-size: 15px;
+    max-width: 100%; 
+}
+
+select:hover {
+    background-color: var(--button-color) !important;
+    color: #fff;
+}
+
+select:focus {
+    outline: none;
+    background-color: #e9ecef;
+}
+
+select option {
+    color: black;
+    background-color: #e7a4d531;
+}
 
 .titulo2{
     background-color: #5CC8F2;
@@ -17,13 +55,12 @@ body {
     color: #F2E527;
 }
 
-h2,h3 {
-    font-family: 'Grown', serif;
+h4{
     font-style:bold; 
-    background-color: #F2E527;
+    background-color: var(--background-amarillo);
     border-radius: 4px;
     text-align: center;
-    border: 2px solid black;
+    border: 2px solid rgba(39, 37, 37, 0.336);
 }
 
 .conceptos{
@@ -31,17 +68,76 @@ h2,h3 {
     font-size: 18px;
 }
 
-button{
-        background-color: #BF60A6; 
-        color: white; 
-        border: 2px solid black; 
-        transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
-        margin-left: 10px; 
-        z-index: 1;
-        border-radius: 4px;
+.formularioProductoNuevo{
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    background-color: #f9f9f9; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-#productosTable,#productForm{
-    font-family: "Montserrat", sans-serif;
-    font-size: 15px;
+
+label {
+    font-weight: bold;
+    color: var(--background-rosa) !important;
+}
+
+.form-control, .form-select {
+    border: 1px solid var(--background-rosa)!important;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: var(--button-color) !important;
+    color: white !important;
+    border: 2px solid white !important;
+    border-radius: 5px !important;
+    padding: 6px 12px !important;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s !important;
+    margin-top: 10px !important;
+}
+
+#btnEliminar{
+    background-color: #5a5a65;
+}
+
+#productosGuardados{
+    font-weight: bold;
+    color: var(--background-rosa) !important;
+    border: 1px solid var(--background-rosa)!important;
+    border-radius: 5px;
+}
+
+.productosGuardados {
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    background-color: #f9f9f9; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h4 {
+        font-size: 1.5rem;
+    }
+
+    .productos-agregados {
+        max-width: 90%; 
+        padding: 15px; 
+    }
+
+    button {
+        width: 100%; 
+        margin-bottom: 10px;
+    }
+
 }

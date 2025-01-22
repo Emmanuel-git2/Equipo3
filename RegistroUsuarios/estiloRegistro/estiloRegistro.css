@@ -13,7 +13,6 @@
 }
 
 h2 {
-    color: var(--background-amarillo);
     text-align: center;
     margin-bottom: 20px;
     font-size: 2rem;
@@ -27,7 +26,7 @@ label {
 }
 
 .form-control {
-    border: 1px solid var(--background-rosa);
+    border: 1px solid var(--background-rosa)!important;
     border-radius: 5px;
 }
 
@@ -53,28 +52,54 @@ label {
 }
 
 .invalid-feedback {
+    background-color: whitesmoke;
     margin-top: 5px;
 }
 
-.terms-link {
-    color: var(--button-color); 
+.is-valid {
+    background-color: white !important;
+    position: relative;
 }
 
-.terms-link {
-    color: var(--button-color); /* Color del texto */
-    opacity: 2;
-    transition: opacity 0.3s ease; /* Transición suave */
+.is-invalid {
+    background-color: white !important;
+    position: relative;
 }
 
-/* Estilo al pasar el cursor sobre el enlace */
-.terms-link:hover {
-    opacity: 1; /* Se vuelve opaco al pasar el cursor */
+.is-valid::after {
+    content: '\2714' !important;
+    color: #74d18ab6 !important;
+    font-size: 1.5em;
+    position: relative;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%) !important;
 }
 
-/* Estilo al hacer clic en el enlace */
-.terms-link:active {
-    opacity: 0.7; /* Se vuelve translúcido al hacer clic */
+.is-invalid::after {
+    content: '\2716' !important;
+    color: #e65765e0 !important;
+    font-size: 1.5em;
+    position: relative;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%) !important;
 }
+
+.invalid-feedback {
+    color: #dc3545;
+    font-size: 0.875em;
+}
+
+.is-valid::after, .is-invalid::after {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.is-valid.is-valid::after, .is-invalid.is-invalid::after {
+    opacity: 1;
+}
+
 
 .modal-content {
     background-color: white;
@@ -98,6 +123,41 @@ label {
     background-color: #a84d91 !important;
     border-color: white !important;
     color: white !important;
+}
+
+/* Estilo general del texto del checkbox */
+#checkboxLabel {
+    color: var(--text-color); /* Color general */
+    font-size: 14px;
+    opacity: 0.5; /* Translúcido por defecto */
+    transition: opacity 0.3s ease; /* Transición suave */
+}
+
+/* Cuando el checkbox está marcado */
+#gridCheck:checked + #checkboxLabel {
+    opacity: 1; /* Totalmente visible */
+}
+
+/* Estilo para el enlace de Términos y Condiciones */
+.terms-link {
+    color: var(--button-color);
+    opacity: 1; /* Totalmente visible */
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+}
+
+.terms-link:hover {
+    opacity: 0.8; /* Más translúcido al pasar el cursor */
+}
+
+.terms-link:active {
+    opacity: 0.6; /* Más translúcido al hacer clic */
+}
+
+/* Clase global para deshabilitar */
+.disabled {
+    opacity: 0.5;
+    pointer-events: none; /* Sin interacción */
 }
 
 #gridCheck {
@@ -154,4 +214,10 @@ label {
     h2 {
         font-size: 1.5rem;
     }
+
+    button {
+        width: 100%; 
+        margin-bottom: 10px;
+    }
+
 }
