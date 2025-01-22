@@ -144,6 +144,10 @@ function headerAndFooter() {
     ></script>
       `
   );
+  //Insertamos imagen BM en la pestaña de navegación 
+    document.head.insertAdjacentHTML("beforeend",`
+  <link rel="icon" href="../Header_y_footer/ImgPestaña.png" type="image/png">
+   `);
 }
 
 
@@ -156,4 +160,3 @@ function redirectToLogin() {
 }
 
 headerAndFooter();
-
