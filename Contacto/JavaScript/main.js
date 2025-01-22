@@ -32,6 +32,25 @@ function clearError(input) {
     }
 }
 
+// Función para validar el teléfono
+function validatePhone(phone) {
+    const phoneValue = phone.trim();
+    
+    // Verifica que tenga 10 dígitos numéricos
+    const validLength = phoneValue.length === 10;
+    const isNumeric = !isNaN(phoneValue);
+    
+    // Verifica que no sea una secuencia de números repetidos (como "0000000000", "1111111111", etc.)
+    const repeatedPattern = /^(\d)\1{9}$/; // Detecta secuencias repetidas de 10 dígitos
+    const isNotRepeated = !repeatedPattern.test(phoneValue);
+  
+    if (!validLength || !isNumeric || !isNotRepeated) {
+        return false; // Si no cumple con las condiciones, es inválido
+    }
+    
+    return true; // Si pasa todas las condiciones, es válido
+}
+
 // Función para validar el formulario
 function validateForm() {
     let isValid = true; // Asumimos que todo está válido
@@ -53,11 +72,11 @@ function validateForm() {
     }
 
     // Validación del teléfono
-    if (phoneInput.value.trim().length < 10 || isNaN(phoneInput.value.trim())) {
-        showError(phoneInput, "El teléfono debe contener al menos 10 dígitos y ser numérico.");
-        isValid = false;
+    if (!validatePhone(phoneInput.value)) {
+        showError(phoneInput, "El teléfono debe contener 10 dígitos, ser numérico y no puede ser una secuencia repetida.");
+        isValid = false; // Marca como inválido si no pasa la validación
     } else {
-        clearError(phoneInput);
+        clearError(phoneInput); // Si es válido, limpia los errores
     }
 
     // Validación del mensaje
@@ -75,8 +94,9 @@ function validateForm() {
 sendButton.addEventListener("click", function (event) {
     event.preventDefault(); // Prevenimos el comportamiento predeterminado del botón
 
+    // Llamamos a la función de validación
     if (validateForm()) {
-        sendEmail(); // Llamada a la función de envío de correo
+        sendEmail(); // Si el formulario es válido, llama a la función para enviar el correo
     }
 });
 
@@ -97,16 +117,15 @@ function sendEmail() {
     // Muestra los datos en la consola para asegurarte de que todo esté bien
     console.log(formData);  // Aquí se mostrarán los datos antes de enviarlos
 
-
-   // Enviar el correo utilizando EmailJS
-emailjs.send(serviceID, templateID, formData)
-.then(function(response) {
-    // Mostrar el modal de éxito
-    var myModal = new bootstrap.Modal(document.getElementById('successModal'));
-    myModal.show();
-}, function(error) {
-    // Mostrar el modal de error
-    var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
-    errorModal.show();
-});
+    // Enviar el correo utilizando EmailJS
+    emailjs.send(serviceID, templateID, formData)
+    .then(function(response) {
+        // Mostrar el modal de éxito
+        var myModal = new bootstrap.Modal(document.getElementById('successModal'));
+        myModal.show();
+    }, function(error) {
+        // Mostrar el modal de error
+        var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+        errorModal.show();
+    });
 }
