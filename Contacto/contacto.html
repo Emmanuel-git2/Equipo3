@@ -4,22 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto</title>
-    <!-- Archivo CSS de Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <!-- Archivo CSS del Header y Footer -->
-    <link rel="stylesheet" href="../Header_y_footer/header_y_footer.css">
-
-    <!-- Archivo CSS -->
+     <!-- Incluir Bootstrap CSS -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ <!-- Estilos footer y header -->
+ <link rel="stylesheet" href="../Header_y_footer/header_y_footer.css">
+         <!-- Archivo CSS -->
     <link rel="stylesheet" href="./Css/style.css">
+<!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+ <title>Contacto</title>
 </head>
 
 <body>
-
     <!-- Contenido de la página -->
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Contáctanos</h1>
+    <body>
+        <div class="container mt-5">
+            <form id="registrationForm">
+                <h2 class="mb-4">Contáctanos</h2>
 
         <!-- Formulario de contacto -->
         <form id="contactForm">
@@ -122,20 +125,20 @@
 
     <!-- CDN de email.js -->
     <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js'></script>
-    <script src="../Header_y_footer/header_y_footer.js"></script>
+    
     <script type='text/javascript'>
         (function() {
             emailjs.init('<TfFM7gSYBRFC3ABEP>');
         })();
     </script>
 
-    <!-- Archivos JavaScript de jQuery, Popper.js y Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <!-- Archivos JavaScript de jQuery, Popper.js y Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
 
-    <script src="./JavaScript/main.js"></script>
-
-</body>
+<!-- Tus scripts personalizados -->
+<script src="./JavaScript/main.js"></script>
+<script src="../Header_y_footer/header_y_footer.js"></script>
 
 </html>
