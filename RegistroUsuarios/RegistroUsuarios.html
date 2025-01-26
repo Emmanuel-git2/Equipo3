@@ -20,12 +20,12 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="name">Nombre completo</label>
-                    <input type="text" class="form-control" id="name" placeholder="Escribe tu nombre">
+                    <input type="text" class="form-control" id="name" placeholder="Escribe tu nombre completo">
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="userName">Nombre de usuario</label>
-                    <input type="text" class="form-control" id="userName" placeholder="Escribe tu nombre de usuario">
+                    <input type="text" class="form-control" id="userName" placeholder="Escribe tu nombre de usuario con carácteres alfanúmericos">
                     <div class="invalid-feedback"></div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="numberPhone">Número de teléfono</label>
-                    <input type="tel" class="form-control" id="numberPhone" placeholder="10 dígitos" pattern="\d{10}" maxlength="10">
+                    <input type="text" class="form-control" id="numberPhone" placeholder="10 dígitos" pattern="\d{10}" maxlength="10">
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="form-group col-md-6">
@@ -79,15 +79,18 @@
 
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="gridCheck" disabled>
-                <label class="form-check-label" for="gridCheck">
+                <label class="form-check-label" for="gridCheck" id="checkboxLabel">
                     He leído y acepto los 
                     <a href="#" id="termsLink" class="terms-link">
                         Términos y Condiciones
                     </a>
                 </label>
             </div>
-
+            
+        <div class="container">
             <button type="submit" class="btn btn-primary" id="registerButton" disabled>Registrar</button>
+        </div>
+        
         </form>
     </div>
 
