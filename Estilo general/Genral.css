@@ -1,0 +1,163 @@
+/*Documento CSS para paginas de BrickMania*/
+
+/*TIpos de letra que se usan para titulos*/
+h1, h2, h3, h4, h5, h6 { 
+    font-family: 'Grown', serif;
+    font-style:bold; 
+}
+/*Color del fonfo (es un blanco 'smoke' para no lasmimar la vista de los usuarios)*/
+body {  
+    background-color: whitesmoke;
+}
+
+/* Estilos para Barra de Navegacion */
+
+.navbar-custom {
+    background-color: #F2CC0F; 
+    color: black; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    height: 60px; 
+}
+
+.navbar-custom .navbar-nav .nav-link {
+    color: black; /* Color de los enlaces de navegación */
+}
+
+/*Color y estilos para las letras B y M de la barra, por separado**/
+.letra-b, .letra-m { 
+    font-size: 2rem; 
+    color: #ff5733; 
+    line-height: 60px;
+    text-shadow: 1px 1px 1px #6c6c71
+}
+
+.letra-b { 
+    color: #F22E2E; 
+    font-size: 3rem;
+} 
+
+.letra-m { 
+    color: #F2E527;
+    font-size: 3rem;
+}
+
+/* Estilo para el botón 'Entrar' de la barra de navegacion*/
+.btn-entrar {
+    background-color: #BF60A6; 
+    color: white; 
+    border: 2px solid white; 
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    z-index: 1; 
+}
+
+.btn-entrar:hover {
+    background-color: white; 
+    color: #BF60A6; 
+    border-color: #BF60A6; 
+}
+
+/* Estilo para el botón 'Registrarse' de la barra de navegacion*/
+.btn-registrarse {
+    background-color: #BF60A6; 
+    color: white; 
+    border: 2px solid white; 
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+    margin-left: 10px; 
+    z-index: 1;
+}
+
+.btn-registrarse:hover {
+    background-color: white;
+    color: #BF60A6; 
+    border-color: #BF60A6; 
+}
+
+/* Estilo para los enlaces de navegación */ 
+.nav-link-custom { 
+    background-color: transparent; 
+    color: #007bff; 
+    border: 2px solid transparent; 
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+    padding: 5px 10px;
+    border-radius: 5px; 
+} 
+    
+.nav-link-custom:hover { 
+    background-color: white; 
+}
+   
+
+/* Aislar estilos de los botones */
+.navbar-nav .nav-item .btn-entrar, .navbar-nav .nav-item .btn-registrarse {
+    background-color: inherit !important; 
+    color: inherit !important; 
+    border-color: inherit !important; 
+    transition: none !important; 
+}
+
+/*Colores del footer*/
+div.container{
+    background-color: #BF60A6;
+    
+}
+footer{
+    background-color: #BF60A6;
+}
+
+/*Tamano de todos los parrafos*/
+p{
+    font-size: 20px;
+}
+
+/*Margenes genrales de todas las paginas*/
+main{
+    margin: 45px;
+}
+
+
+:root {
+    --background-rosa: #bf60a6;
+    --background-amarillo: #f2cc0f;
+    --button-color: #bf60a6;
+  }
+  .navbar {
+    background-color: var(--background-amarillo);
+    font-family: "Montserrat";
+  }
+  
+
+/*Colocr y estilos del footer*/  
+  .footer {
+    background-color: var(--background-rosa);
+    box-sizing: content-box;
+  
+  }
+  
+  .footer-icon{
+    color: white;
+    font-size: 2rem;
+    padding-inline: 20px;
+    border-color: transparent;
+    background-color: transparent;
+  }
+  
+  .p-footer {
+  color: white;
+  }
+  
+  #div-generation {
+    align-items: center;
+  }
+
+
+  .card-img-top {
+    height: 200px; 
+    object-fit: cover; 
+    width: 100%; 
+}
+
+   
+
+
