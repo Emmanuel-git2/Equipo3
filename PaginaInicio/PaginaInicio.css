@@ -8,6 +8,7 @@ h1, h2, h3, h4, h5, h6 {
 
 body { 
     font-family: 'Montserrat', sans-serif; 
+    background-color: whitesmoke;
 }
 
 /* Colores de Barra de Navegacion */
@@ -86,6 +87,7 @@ body {
 .nav-link-custom:hover { 
     background-color: white; 
 }
+
    
 
 /* Aislar estilos de los botones */
@@ -129,6 +131,7 @@ p{
 
 main{
     margin: 45px;
+    margin-right: 90px;
 }
 
 .quienS{
@@ -146,25 +149,6 @@ main{
   .navbar {
     background-color: var(--background-amarillo);
     font-family: "Montserrat";
-  }
-  
-  .letra-b,
-  .letra-m {
-    font-size: 2rem;
-    color: #ff5733;
-    line-height: 60px;
-    font-weight: bold;
-
-  }
-  
-  .letra-b {
-    color: #f22e2e;
-    font-size: 3rem;
-  }
-  
-  .letra-m {
-    color: #f2e527;
-    font-size: 3rem;
   }
   
   .button {
@@ -215,6 +199,5 @@ img[alt="Fondo Azul"] {
     color: white;
     text-shadow: 2px 2px 2px #5a5858;
 }
-   
-}
+
 

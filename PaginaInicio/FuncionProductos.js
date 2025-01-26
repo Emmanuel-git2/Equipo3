@@ -1,8 +1,8 @@
 // Función para agregar un producto al contenedor
 function agregarProducto(item) {
     const itemHTML = `
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-            <div class="card" style="width: 18rem;">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
+            <div class="card" style="width: 25rem;">
                 <img src="${item.img}" class="card-img-top" alt="${item.name}" style="height: 200px; object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title">${item.name}</h5>
@@ -55,3 +55,10 @@ function mostrarProductosDinamicos() {
 document.addEventListener("DOMContentLoaded", function () {
     mostrarProductosDinamicos();
 });
+
+//Estilo de las cards para los productos
+
+// const estiloCard = document.getElementsByClassName("card");
+// estiloCard.addEventListener("click", ()=>{
+//     estiloCard.style.height= 100;
+// });
