@@ -70,13 +70,20 @@ btnInicio.addEventListener("click", function (event) {
     );
 
     if (usuarioEncontrado) {
+        // Almacenar datos en sessionStorage
+        sessionStorage.setItem("usuarioActivo", JSON.stringify({ email: usuarioEncontrado.email,
+            userName :usuarioEncontrado.userName
+        }));
+
         // Limpiar campos
         txtEmail.value = "";
         txtPassword.value = "";
-        window.location.href = "http://127.0.0.1:5501/PaginaInicio/PaginaInicio.html"; // Cambia "index.html" a la ruta de tu página de inicio.
+
+        // Redirigir a la página de inicio
+        window.location.href = "http://127.0.0.1:5501/PaginaInicio/PaginaInicio.html"; // Cambia la ruta según corresponda
     } else {
         generalError.innerText = "El correo electrónico no corresponde con la contraseña ingresada.";
-    txtEmail.classList.add("input-error");
-    txtPassword.classList.add("input-error");
+        txtEmail.classList.add("input-error");
+        txtPassword.classList.add("input-error");
     }
 });
