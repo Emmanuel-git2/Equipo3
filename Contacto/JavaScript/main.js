@@ -35,20 +35,19 @@ function clearError(input) {
 // Función para validar el teléfono
 function validatePhone(phone) {
     const phoneValue = phone.trim();
-    
+
     // Verifica que tenga 10 dígitos numéricos
     const validLength = phoneValue.length === 10;
-    const isNumeric = !isNaN(phoneValue);
-    
-    // Verifica que no sea una secuencia de números repetidos (como "0000000000", "1111111111", etc.)
-    const repeatedPattern = /^(\d)\1{9}$/; // Detecta secuencias repetidas de 10 dígitos
-    const isNotRepeated = !repeatedPattern.test(phoneValue);
-  
-    if (!validLength || !isNumeric || !isNotRepeated) {
-        return false; // Si no cumple con las condiciones, es inválido
-    }
-    
-    return true; // Si pasa todas las condiciones, es válido
+    const isNumeric = /^\d{10}$/.test(phoneValue);
+
+    // Verifica patrones no realistas
+    const repeatedPattern = /^(\d)\1{9}$/; // Detecta secuencias repetidas de 10 dígitos (ej. "0000000000")
+    const sequentialPattern = /^(0123456789|9876543210)$/; // Detecta secuencias incrementales o decrementales
+
+    // Valida que no coincida con patrones no permitidos
+    const isValid = validLength && isNumeric && !repeatedPattern.test(phoneValue) && !sequentialPattern.test(phoneValue);
+
+    return isValid; // Retorna true si es válido
 }
 
 // Función para validar el formulario
@@ -73,7 +72,7 @@ function validateForm() {
 
     // Validación del teléfono
     if (!validatePhone(phoneInput.value)) {
-        showError(phoneInput, "El teléfono debe contener 10 dígitos, ser numérico y no puede ser una secuencia repetida.");
+        showError(phoneInput, "El teléfono debe contener 10 dígitos, ser numérico y no puede tener patrones irreales.");
         isValid = false; // Marca como inválido si no pasa la validación
     } else {
         clearError(phoneInput); // Si es válido, limpia los errores
