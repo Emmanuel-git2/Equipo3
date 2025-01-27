@@ -2,7 +2,11 @@
 function agregarProducto(item) {
     const itemHTML = `
         <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
+<<<<<<< HEAD
             <div class="card" style="width: 25rem;">
+=======
+            <div class="card" style="width: 18rem;">
+>>>>>>> 637ff39c98534e7b1276ce85e90274f5404a4689
                 <img src="${item.img}" class="card-img-top" alt="${item.name}" style="height: 200px; object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title">${item.name}</h5>
