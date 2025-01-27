@@ -1,14 +1,16 @@
 // Seleccionamos los elementos del DOM
 const txtEmail = document.getElementById("txtEmail");
-const txtContraseña = document.getElementById("txtContraseña");
+const txtPassword = document.getElementById("txtPassword");
 const btnInicio = document.getElementById("btninicio");
 
-// Creamos el contenedor para mensajes de error específicos
+// Creamos los contenedores para mensajes de error
 const emailError = document.createElement("div");
-emailError.style.color = "red";
-emailError.style.fontSize = "0.9em";
-emailError.style.marginTop = "5px";
+emailError.className = "error-message";
 txtEmail.parentNode.appendChild(emailError);
+
+const generalError = document.createElement("div");
+generalError.className = "error-message";
+txtPassword.parentNode.appendChild(generalError);
 
 // Función para validar el correo electrónico
 function validarCorreo(email) {
@@ -22,26 +24,38 @@ btnInicio.addEventListener("click", function (event) {
 
     // Reiniciar estilos y mensajes
     emailError.innerText = "";
-    txtEmail.style.border = "";
-    txtContraseña.style.border = "";
+    generalError.innerText = "";
+    txtEmail.classList.remove("input-error");
+    txtPassword.classList.remove("input-error");
 
     let isValid = true;
 
-    // Validar si los campos están vacíos
-    if (txtEmail.value.trim() === "") {
+    // Validar si ambos campos están vacíos
+    if (txtEmail.value.trim() === "" && txtPassword.value.trim() === "") {
         isValid = false;
-        txtEmail.style.border = "solid red medium";
+        generalError.innerText = "Ingresa correo electrónico y contraseña.";
+        txtEmail.classList.add("input-error");
+        txtPassword.classList.add("input-error");
+    } else {
+        // Validar correo electrónico vacío
+        if (txtEmail.value.trim() === "") {
+            isValid = false;
+            txtEmail.classList.add("input-error");
+            emailError.innerText = "El correo electrónico es obligatorio.";
+        }
+
+        // Validar contraseña vacía
+        if (txtPassword.value.trim() === "") {
+            isValid = false;
+            txtPassword.classList.add("input-error");
+            generalError.innerText = "La contraseña es obligatoria.";
+        }
     }
 
-    if (txtContraseña.value.trim() === "") {
+    // Validar el formato del correo electrónico
+    if (!validarCorreo(txtEmail.value) && txtEmail.value.trim() !== "") {
         isValid = false;
-        txtContraseña.style.border = "solid red medium";
-    }
-
-    // Validar el correo electrónico
-    if (!validarCorreo(txtEmail.value)) {
-        isValid = false;
-        txtEmail.style.border = "solid red medium";
+        txtEmail.classList.add("input-error");
         emailError.innerText = "El correo electrónico es inválido.";
     }
 
@@ -50,27 +64,19 @@ btnInicio.addEventListener("click", function (event) {
     }
 
     // Lógica de autenticación
-    const usuariosRegistrados = JSON.parse(localStorage.getItem("usuarios")) || [];
+    const usuariosRegistrados = JSON.parse(localStorage.getItem("users")) || [];
     const usuarioEncontrado = usuariosRegistrados.find(
-        (usuario) => usuario.email === txtEmail.value && usuario.password === txtContraseña.value
+        (usuario) => usuario.email === txtEmail.value && usuario.password === txtPassword.value
     );
 
     if (usuarioEncontrado) {
-        alert("Inicio de sesión exitoso");
         // Limpiar campos
         txtEmail.value = "";
-        txtContraseña.value = "";
+        txtPassword.value = "";
+        window.location.href = "http://127.0.0.1:5501/PaginaInicio/PaginaInicio.html"; // Cambia "index.html" a la ruta de tu página de inicio.
     } else {
-        alert("El correo electrónico no corresponde con la contraseña ingresada.");
+        generalError.innerText = "El correo electrónico no corresponde con la contraseña ingresada.";
+    txtEmail.classList.add("input-error");
+    txtPassword.classList.add("input-error");
     }
 });
-
-// Función para registrar usuarios (simulación en la pestaña de registro)
-function registrarUsuario(email, password) {
-    const usuariosRegistrados = JSON.parse(localStorage.getItem("usuarios")) || [];
-    usuariosRegistrados.push({ email, password });
-    localStorage.setItem("usuarios", JSON.stringify(usuariosRegistrados));
-}
-
-// Ejemplo: Registrar un usuario desde la pestaña de registro
-// registrarUsuario("test@example.com", "123456");
