@@ -33,7 +33,6 @@ body {
     text-align: center; /* Asegura que esté centrado */
 }
 
-
 /* Fondo personalizado */
 .fondo-personalizado {
     background-color: rgba(13, 227, 255, 0.20); /* Cambia el 0.78 a otro valor para ajustar la transparencia */
@@ -63,7 +62,6 @@ body {
     box-sizing: border-box;
 }
 
-
 .card:hover {
     transform: scale(1.05); /* Aumenta el tamaño de la tarjeta */
     box-shadow: 0 0 30px #9575cd; /* Cambia el sombreado al resaltar */
@@ -82,38 +80,18 @@ body {
     max-height: 50%; /* Limita la altura máxima para las imágenes */
     object-fit: cover; /* Ajusta las imágenes sin recortarlas */
     border-radius: 50%; /* Convertir la imagen en un círculo */
-    padding: 10px; /* Espaciado interno */
-    box-sizing: border-box;
-    position: relative;
+    padding: 10px; /* Añadir valor a la propiedad padding */
 }
 
-.card-img-top::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 50%; /* Mantener la forma circular */
-    box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.5); /* Sombra difuminada con degradado transparente */
-    pointer-events: none; /* Permitir interacción con la imagen */
-}
-
-.card-body {
+/* Estilo para botones de redes sociales */
+.social-icons {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    flex-grow: 1;
-    padding: 20px; /* Espaciado interno */
-    overflow: hidden; /* Ocultar contenido que exceda el tamaño */
-    text-overflow: ellipsis; /* Puntos suspensivos para texto largo */
+    margin-top: 10px;
 }
 
-/* Media query para pantallas medianas */
-@media (max-width: 768px) {
-    .card {
-        width: calc(100% - 40px); /* Una columna para pantallas medianas y pequeñas */
-    }
+.social-icons a {
+    margin: 0 10px;
+    color: #000;
+    font-size: 24px;
 }
-

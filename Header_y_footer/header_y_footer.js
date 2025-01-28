@@ -2,7 +2,7 @@ function headerAndFooter() {
   const body = document.getElementsByTagName("body");
   const head = document.getElementsByTagName("head");
 
-  //Imports de stylesheets bootStrap y fonts
+  // Imports de stylesheets bootStrap y fonts
   document.head.insertAdjacentHTML(
     "afterend",
     `
@@ -31,17 +31,19 @@ function headerAndFooter() {
     `
   );
 
-  //Insertamos navbar despues de iniciar el body
+  // Verificar si hay un usuario activo en sessionStorage
+  const usuarioActivo = JSON.parse(sessionStorage.getItem("usuarioActivo"));
+
+  // Insertar navbar dinámico
   document.body.insertAdjacentHTML(
     "afterbegin",
     `
-     <!-- NavBar -->
-         <header>
+      <header>
         <nav class="navbar navbar-expand-md">
           <div class="container-fluid">
-            <a class="navbar-brand" href="../PaginaInicio/PaginaInicio.html"
-              ><span class="letra-b">B</span><span class="letra-m">M</span></a
-            >
+            <a class="navbar-brand" href="../PaginaInicio/PaginaInicio.html">
+              <span class="letra-b">B</span><span class="letra-m">M</span>
+            </a>
             <button
               class="navbar-toggler"
               type="button"
@@ -56,100 +58,108 @@ function headerAndFooter() {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="../Nosotros/nosotros.html"
-                    >Nosotros</a
-                  >
+                  <a class="nav-link active" aria-current="page" href="../Nosotros/nosotros.html">Nosotros</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="../Contacto/contacto.html"
-                    >Contacto</a
-                  >
+                  <a class="nav-link active" aria-current="page" href="../Contacto/contacto.html">Contacto</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="../Categorias/categorias.html"
-                    >Categorías</a
-                  >
+                  <a class="nav-link active" aria-current="page" href="../Categorias/categorias.html">Categorías</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="../Carrito/carrito.html"
-                    >Carrito</a
-                  >
+                  <a class="nav-link active" aria-current="page" href="../Carrito/carrito.html">Carrito</a>
                 </li>
               </ul>
-              <button class="button d-flex mb-2" onclick="redirectToLogin()">Entrar</button>
-              <button class="button d-flex mb-2" onclick="redirectToRegister()">Registrarse</button>
+              ${
+                usuarioActivo
+                  ? `
+                    <div class="d-flex align-items-center">
+                      <span class="navbar-text" id="bienvenida">Hola, ${usuarioActivo.userName}</span>
+                      <button class="button d-flex mb-2 ms-2" id="cerrarSesion">Cerrar sesión</button>
+                    </div>
+                  `
+                  : `
+                    <button class="button d-flex mb-2" onclick="redirectToLogin()">Entrar</button>
+                    <button class="button d-flex mb-2" onclick="redirectToRegister()">Registrarse</button>
+                  `
+              }
             </div>
           </div>
         </nav>
-       </header>
+      </header>
     `
   );
 
-  //Insertamos footer a
+  // Insertar footer
   document.body.insertAdjacentHTML(
     "beforeend",
     `
       <footer>
-
-      <nav class="navbar navbar-expand static-bottom footer">
-        <div class="container-fluid flex-column">
-
-          <div class="navbar-collapse justify-content-center" id="div-icons">
-            <ul class="navbar-nav mb-2 mb-lg-0">
-              <li>
-                <a href="https://www.facebook.com/" class="footer-icon"">
-                  <i class="bi bi-facebook"></i>
+        <nav class="navbar navbar-expand static-bottom footer">
+          <div class="container-fluid flex-column">
+            <div class="navbar-collapse justify-content-center" id="div-icons">
+              <ul class="navbar-nav mb-2 mb-lg-0">
+                <li>
+                  <a href="https://www.facebook.com/" class="footer-icon">
+                    <i class="bi bi-facebook"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://x.com/?lang=es" class="footer-icon">
+                    <i class="bi bi-twitter-x"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.instagram.com/" class="footer-icon">
+                    <i class="bi bi-instagram"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/" class="footer-icon">
+                    <i class="bi bi-github"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="navbar-collapse">
+              <div class="d-flex flex-column justify-content-center" id="div-generation">
+                <a href="https://mexico.generation.org/">
+                  <img src="https://mexico.generation.org/wp-content/uploads/2019/08/Generation_Mexico_logo_WHITE.svg" id="imgGeneration">
                 </a>
-              </li>
-              <li>
-                <a href="https://x.com/?lang=es" class="footer-icon"">
-                  <i class="bi bi-twitter-x"></i>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.instagram.com/" class="footer-icon"">
-                  <i class="bi bi-instagram"></i>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/" class="footer-icon">
-                  <i class="bi bi-github"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-  
-
-          <div class="navbar-collapse">
-            <div class="d-flex flex-column justify-content-center" id="div-generation">
-              <a href="https://mexico.generation.org/">
-                <img src="https://mexico.generation.org/wp-content/uploads/2019/08/Generation_Mexico_logo_WHITE.svg" id="imgGeneration">
-              </a>
-              <p class="p-footer">
-                © 2025 Proyecto para el bootcamp Generation MX
-              </p>
+                <p class="p-footer">
+                  © 2025 Proyecto para el bootcamp Generation MX
+                </p>
+              </div>
             </div>
           </div>
-
-        </div>
-      </nav>
-
+        </nav>
       </footer>
-
-    <!-- Script Bootstrap -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-      `
+      <!-- Script Bootstrap -->
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN6jIeHz"
+        crossorigin="anonymous"
+      ></script>
+    `
   );
-  //Insertamos imagen BM en la pestaña de navegación 
-    document.head.insertAdjacentHTML("beforeend",`
-  <link rel="icon" href="../Header_y_footer/ImgPestaña.png" type="image/png">
-   `);
-}
 
+  // Insertar imagen BM en la pestaña de navegación
+  document.head.insertAdjacentHTML(
+    "beforeend",
+    `
+      <link rel="icon" href="../Header_y_footer/ImgPestaña.png" type="image/png">
+    `
+  );
+
+  // Lógica para cerrar sesión
+  if (usuarioActivo) {
+    const btnCerrarSesion = document.getElementById("cerrarSesion");
+    btnCerrarSesion.addEventListener("click", function () {
+      sessionStorage.removeItem("usuarioActivo");
+      location.reload(); // Recargar la página para actualizar el header
+    });
+  }
+}
 
 function redirectToRegister() {
   window.location.href = "../RegistroUsuarios/RegistroUsuarios.html";

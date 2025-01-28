@@ -146,6 +146,31 @@ label {
   color: #fff;
 }
 
+
+.lego-map-container {
+  width: 600px;
+  height: 450px;
+  mask-image: url(../imagenes/legoMap.svg); /* Ruta de tu máscara SVG */
+  -webkit-mask-image: url(../imagenes/legoMap.svg); /* Soporte para Webkit */
+  mask-size: contain; /* Ajustamos a contain para asegurar que la máscara completa sea visible */
+  -webkit-mask-size: contain; /* Ajustamos a contain para soporte Webkit */
+  mask-position: center; /* Centramos la máscara */
+  -webkit-mask-position: center; /* Centramos la máscara para soporte Webkit */
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-composite: exclude; /* Ajuste de la máscara para combinarla mejor */
+  -webkit-mask-composite: exclude; /* Soporte para Webkit */
+  background-color: #dc83e2; /* Color de fondo en caso de error */
+  overflow: hidden;
+}
+
+.lego-map-container iframe {
+  width: 100%;
+  height: 100%;
+}
+
+
+
 @media (max-width: 768px) {
   .container {
       padding: 15px;
