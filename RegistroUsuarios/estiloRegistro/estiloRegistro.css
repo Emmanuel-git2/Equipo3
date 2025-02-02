@@ -100,6 +100,12 @@ label {
     opacity: 1;
 }
 
+.modal {
+    z-index: 1000;
+    padding-block: 100px;
+  }
+  
+
 
 .modal-content {
     background-color: white;
