@@ -34,11 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
         // Actualiza la opacidad del texto asociado al checkbox
         checkboxLabel.style.opacity = "1"; // Hace visible el texto
-        checkboxLabel.classList.remove("disabled"); 
-    
-        // Deshabilita el enlace de términos y condiciones
-        termsLink.classList.add("disabled");
-        termsModal.setAttribute("inert", "true"); 
+        checkboxLabel.classList.remove("disabled");
     
         // Verifica si el formulario es válido después de aceptar los términos
         checkFormValidity();
@@ -225,26 +221,34 @@ document.addEventListener("DOMContentLoaded", function () {
             email: emailField.value.trim(),
             password: passwordField.value.trim(), 
         };
-    
-        // Guardar datos en localStorage
+        
+        // Verificar si el correo ya está registrado
         const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+        const emailExists = existingUsers.some(user => user.email === userData.email);
+    
+        if (emailExists) {
+            // Si el correo ya existe, mostrar el modal de error
+            $('#emailErrorModal').modal('show');
+            return;
+        }
+    
+        // Si no existe, guardar los datos del usuario
         existingUsers.push(userData);
         localStorage.setItem("users", JSON.stringify(existingUsers));
         console.log("Usuarios guardados:", existingUsers);
-    
-        $('#successModal').modal('show');
         
+        // Mostrar modal de éxito
+        $('#successModal').modal('show');
         document.getElementById("successModal").removeAttribute("inert");
     }
     
     // Función para redirigir al login cuando el usuario hace clic en "Ir al Login"
-    const redirectButton = document.getElementById("redirectButton");
-    if (redirectButton) {
-        redirectButton.addEventListener("click", function () {
-            // Redirigir a login.html después de hacer clic en "Ir al Login"
+    document.querySelectorAll(".redirect-Button").forEach(button => {
+        button.addEventListener("click", () => {
             window.location.href = "../Login/login.html";
         });
-    }
+    });
+    
 
     // Eventos de validación
     

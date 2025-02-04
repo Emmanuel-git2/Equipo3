@@ -3,22 +3,50 @@
 }
 
 /* declaramos los colores como variables para facilitar su uso */
-:root {
+:root { 
   --background-rosa: #bf60a6;
   --background-amarillo: #f2cc0f;
   --button-color: #bf60a6;
 }
 
-.navbar {
+/* Hace que el header sea fijo en la parte superior */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 2000;  
   background-color: var(--background-amarillo);
-  font-family: "Montserrat";
 }
 
+#main-content { 
+  margin-top: 100px; /* Ajusta según el tamaño del header */
+}
+
+
+/* Asegura que el contenido no quede cubierto por el header fijo */
+body {
+  padding-top: 70px;
+}
+
+/* Estilos del navbar */
+.navbar {
+  font-family: "Montserrat";
+  padding: 10px 15px;
+}
+
+#navbarHeader{
+  background-color: var(--background-amarillo) !important;
+
+}
+
+/* Estilos de las letras del logo */
 .letra-b, .letra-m { 
   font-size: 2rem; 
   line-height: 60px;
   font-weight: bold;
-  text-shadow: 1px 1px 1px #6c6c71
+  text-shadow: 1px 1px 1px #6c6c71;
 }
 
 .letra-b {
@@ -31,6 +59,18 @@
   font-size: 3rem;
 }
 
+/* Estilo para el enlace activo */
+.nav-link.active {
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Ajuste para mantener los botones alineados correctamente */
+.navbar .d-flex {
+  margin-left: auto; /* Mantiene los botones de login y logout a la derecha */
+}
+
+/* Botones del navbar */
 .button {
   background-color: var(--button-color);
   color: white;
@@ -39,16 +79,17 @@
   border-radius: 5px; 
   padding: 6px 12px;
   margin-right: 4px;
-  
 }
 
+/* Estilos del footer */
 .footer {
-  background-color: var(--background-rosa);
+  background-color: var(--background-rosa) !important;
   box-sizing: content-box;
-
+  padding-top: 20px;
+  text-align: center;
 }
 
-.footer-icon{
+.footer-icon {
   color: white;
   font-size: 2rem;
   padding-inline: 20px;
@@ -57,13 +98,38 @@
 }
 
 .p-footer {
-color: white;
+  color: white;
 }
 
 #div-generation {
   align-items: center;
 }
 
-#bienvenida{
+#bienvenida {
   font-weight: bold;
 }
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+  .navbar-toggler {
+    border: none;
+  }
+
+  .navbar-nav {
+    width: 100%;
+    text-align: left;
+  }
+  
+  .navbar .d-flex {
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .button {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+}
+
