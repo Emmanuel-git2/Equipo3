@@ -7,6 +7,7 @@ const nameInput = document.getElementById("name"); // Campo Nombre
 const emailInput = document.getElementById("email"); // Campo Correo
 const phoneInput = document.getElementById("phone"); // Campo Teléfono
 const messageInput = document.getElementById("message"); // Campo Mensaje
+const contactForm = document.getElementById("contactForm"); // Formulario completo
 
 // Expresión regular para validar correos electrónicos
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -128,3 +129,17 @@ function sendEmail() {
         errorModal.show();
     });
 }
+
+// Seleccionar los botones de cierre del modal de éxito
+const closeModalButtons = document.querySelectorAll("#closeSuccessModal");
+
+// Función para limpiar el formulario
+function resetForm() {
+    contactForm.reset(); // Limpia todos los campos del formulario
+}
+
+// Escucha el clic en cualquier botón de cierre del modal
+closeModalButtons.forEach(button => {
+    button.addEventListener("click", resetForm);
+});
+
