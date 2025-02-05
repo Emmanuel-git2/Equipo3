@@ -15,7 +15,7 @@ table{
 
 select {
     color: white !important;
-    background-color: #9c0b76 !important;
+    background-color: #9c0b757a !important;
     border: 2px solid var(--background-rosa) !important;
     border-radius: 5px;
     padding: 5px;
@@ -101,6 +101,10 @@ label {
 
 #btnEliminar{
     background-color: #5a5a65;
+}
+
+.titulo2{
+    padding-top: 70px;
 }
 
 #productosGuardados{

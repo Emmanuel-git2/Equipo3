@@ -20,121 +20,110 @@
 <body>
     <!-- Contenido de la página -->
     <div class="container mt-5">
-        <form id="registrationForm">
+        <form id="contactForm">
             <h2 class="mb-4">Contáctanos</h2>
 
-            <!-- Formulario de contacto -->
-            <form id="contactForm">
-                <!-- Campo para el nombre -->
-                <div class="mb-3 col-12">
-                    <label for="name" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="name" placeholder="Ingrese su nombre">
+            <!-- Campo para el nombre -->
+            <div class="mb-3 col-12">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="name" placeholder="Ingrese su nombre">
+            </div>
+
+            <!-- Campo para el correo electrónico -->
+            <div class="mb-3 col-12">
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="email" placeholder="Ingrese su correo electrónico">
+            </div>
+
+            <!-- Campo para el teléfono -->
+            <div class="mb-3 col-12">
+                <label for="phone" class="form-label">Teléfono</label>
+                <input type="tel" class="form-control" id="phone" placeholder="Ingrese su número de teléfono">
+            </div>
+
+            <!-- Campo para el mensaje -->
+            <div class="mb-3 col-12">
+                <label for="message" class="form-label">Mensaje</label>
+                <textarea class="form-control" id="message" rows="4" placeholder="Escriba su mensaje"></textarea>
+            </div>
+
+            <!-- Botón para enviar -->
+            <button type="button" id="sendButton" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+
+    <!-- Sección Visítanos -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">¡Visítanos!</h2>
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6">
+                <ul class="list-unstyled">
+                    <li class="mb-3">
+                        <img src="./imagenes/telefono.png" alt="Teléfono" style="width: 24px; height: 24px; margin-right: 8px;"> Teléfono: <span>(123) <strong>456-7890</strong></span>
+                    </li>
+                    <li class="mb-3">
+                        <img src="./imagenes/correo.png" alt="Correo" style="width: 24px; height: 24px; margin-right: 8px;"> Correo: <strong>brickmania.generation@gmail.com</strong>
+                    </li>
+                    <li class="mb-3">
+                        <img src="./imagenes/direccion.png" alt="Dirección" style="width: 24px; height: 24px; margin-right: 8px;"> Dirección: <strong>Calle Ejemplo 123, Ciudad, País</strong>
+                    </li>
+                    <li class="mb-3">
+                        <img src="./imagenes/horario.png" alt="Horario" style="width: 24px; height: 24px; margin-right: 8px;"> Horario de Atención:
+                        <ul class="list-unstyled">
+                            <li><strong>Lunes a Viernes:</strong> 9:00 AM - 6:00 PM</li>
+                            <li><strong>Sábado:</strong> 10:00 AM - 4:00 PM</li>
+                            <li><strong>Domingo:</strong> Cerrado</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="lego-map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354346500546!2d144.95605431531835!3d-37.81627937975185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf5775b4ed30c3612!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1634010480593!5m2!1sen!2sau" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
-
-                <!-- Campo para el correo electrónico -->
-                <div class="mb-3 col-12">
-                    <label for="email" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="email" placeholder="Ingrese su correo electrónico">
-                </div>
-
-                <!-- Campo para el teléfono -->
-                <div class="mb-3 col-12">
-                    <label for="phone" class="form-label">Teléfono</label>
-                    <input type="tel" class="form-control" id="phone" placeholder="Ingrese su número de teléfono">
-                </div>
-
-                <!-- Campo para el mensaje -->
-                <div class="mb-3 col-12">
-                    <label for="message" class="form-label">Mensaje</label>
-                    <textarea class="form-control" id="message" rows="4" placeholder="Escriba su mensaje"></textarea>
-                </div>
-
-                <!-- Botón para enviar -->
-                <button type="button" id="sendButton" class="btn btn-primary">Enviar</button>
-            </form>
-        </div>
-
-<!-- Sección Visítanos -->
-<div class="container mt-5">
-    <h2 class="text-center mb-4">¡Visítanos!</h2>
-    <div class="row align-items-center">
-        <div class="col-12 col-md-6">
-            <ul class="list-unstyled">
-                <li class="mb-3">
-                    <img src="./imagenes/telefono.png" alt="Teléfono" style="width: 24px; height: 24px; margin-right: 8px;"> Teléfono: <span>(123) <strong>456-7890</strong></span>
-                </li>
-                <li class="mb-3">
-                    <img src="./imagenes/correo.png" alt="Correo" style="width: 24px; height: 24px; margin-right: 8px;"> Correo: <strong>brickmania.generation@gmail.com</strong>
-                </li>
-                <li class="mb-3">
-                    <img src="./imagenes/direccion.png" alt="Dirección" style="width: 24px; height: 24px; margin-right: 8px;"> Dirección: <strong>Calle Ejemplo 123, Ciudad, País</strong>
-                </li>
-                <li class="mb-3">
-                    <img src="./imagenes/horario.png" alt="Horario" style="width: 24px; height: 24px; margin-right: 8px;"> Horario de Atención:
-                    <ul class="list-unstyled">
-                        <li><strong>Lunes a Viernes:</strong> 9:00 AM - 6:00 PM</li>
-                        <li><strong>Sábado:</strong> 10:00 AM - 4:00 PM</li>
-                        <li><strong>Domingo:</strong> Cerrado</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="lego-map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354346500546!2d144.95605431531835!3d-37.81627937975185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf5775b4ed30c3612!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1634010480593!5m2!1sen!2sau" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </div>
-</div>
 
-
-
-
-
-
-
-
-        <!-- Modal de éxito -->
-        <div class="modal" tabindex="-1" id="successModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">¡Formulario Enviado!</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Tu mensaje ha sido enviado correctamente. ¡Gracias por contactarnos!</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
+    <!-- Modal de éxito -->
+    <div class="modal" tabindex="-1" id="successModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">¡Formulario Enviado!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeSuccessModal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Tu mensaje ha sido enviado correctamente. ¡Gracias por contactarnos!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeSuccessModal">Cerrar</button>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Modal de error -->
-        <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="errorModalLabel">¡Error al enviar!</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Hubo un problema al enviar el correo. Por favor, intenta nuevamente más tarde.
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
+    <!-- Modal de error -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalLabel">¡Error al enviar!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Hubo un problema al enviar el correo. Por favor, intenta nuevamente más tarde.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
-
-    </div> <!-- Cierre de contenedor principal -->
+    </div>
 
     <!-- CDN de email.js -->
     <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js'></script>
@@ -157,4 +146,3 @@
 </body>
 
 </html>
-

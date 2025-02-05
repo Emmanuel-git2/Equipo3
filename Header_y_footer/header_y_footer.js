@@ -32,14 +32,16 @@ function headerAndFooter() {
   );
 
   // Verificar si hay un usuario activo en sessionStorage
-  const usuarioActivo = JSON.parse(sessionStorage.getItem("usuarioActivo"));
+  const usuarioActivo = sessionStorage.getItem("usuarioActivo")
+    ? JSON.parse(sessionStorage.getItem("usuarioActivo"))
+    : null;
 
   // Insertar navbar dinámico
   document.body.insertAdjacentHTML(
     "afterbegin",
     `
       <header>
-        <nav class="navbar navbar-expand-md">
+        <nav class="navbar navbar-expand-md navbar-light bg-light" id="navbarHeader">
           <div class="container-fluid">
             <a class="navbar-brand" href="../PaginaInicio/PaginaInicio.html">
               <span class="letra-b">B</span><span class="letra-m">M</span>
@@ -56,33 +58,42 @@ function headerAndFooter() {
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <ul class="navbar-nav ms-3 mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="../Nosotros/nosotros.html">Nosotros</a>
+                  <a class="nav-link active" href="../Nosotros/nosotros.html">Nosotros</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="../Contacto/contacto.html">Contacto</a>
+                  <a class="nav-link active" href="../Contacto/contacto.html">Contacto</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="../Categorias/categorias.html">Categorías</a>
+                  <a class="nav-link active" href="../Categorias/categorias.html">Categorías</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="../Carrito/carrito.html">Carrito</a>
+                  <a class="nav-link active" href="../Carrito/carrito.html">Carrito</a>
                 </li>
+                ${
+                  usuarioActivo?.userName === "Admin022025"
+                    ? `
+                      <li class="nav-item" id="adminNavItem">
+                        <a class="nav-link active" href="../FormularioProductos/FormularioProductos.html">Formulario Productos</a>
+                      </li>
+                      `
+                    : ""
+                }
               </ul>
-              ${
-                usuarioActivo
-                  ? `
-                    <div class="d-flex align-items-center">
+              <div class="d-flex align-items-center">
+                ${
+                  usuarioActivo
+                    ? `
                       <span class="navbar-text" id="bienvenida">Hola, ${usuarioActivo.userName}</span>
                       <button class="button d-flex mb-2 ms-2" id="cerrarSesion">Cerrar sesión</button>
-                    </div>
-                  `
-                  : `
-                    <button class="button d-flex mb-2" onclick="redirectToLogin()">Entrar</button>
-                    <button class="button d-flex mb-2" onclick="redirectToRegister()">Registrarse</button>
-                  `
-              }
+                    `
+                    : `
+                      <button class="button d-flex mb-2" onclick="redirectToLogin()">Entrar</button>
+                      <button class="button d-flex mb-2" onclick="redirectToRegister()">Registrarse</button>
+                    `
+                }
+              </div>
             </div>
           </div>
         </nav>
@@ -135,11 +146,9 @@ function headerAndFooter() {
         </nav>
       </footer>
       <!-- Script Bootstrap -->
-      <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN6jIeHz"
-        crossorigin="anonymous"
-      ></script>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     `
   );
 
