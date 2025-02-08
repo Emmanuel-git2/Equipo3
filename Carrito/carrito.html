@@ -1,12 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito</title>
+    <link rel="stylesheet" href="../Contacto/Css/style.css"> <!-- Asegúrate de enlazar tu archivo CSS -->
 </head>
 <body>
-    <p>Carrito</p>
-<script src="../Header_y_footer/header_y_footer.js"></script>
+    <!-- Contenedor del encabezado -->
+    <div id="header-placeholder"></div>
+
+    <!-- Contenido de la página -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 class="my-4">Carrito de Compras</h1>
+
+                <!-- Carrito vacío -->
+                <div id="carrito-vacio" class="row" style="display: none;">
+                    <div class="col-md-12">
+                        <p>Tu carrito está vacío.</p>
+                        <button class="btn btn-primary" id="Ir-a-ver-el-Catálogo">Ir a ver el Catálogo</button>
+                    </div>
+                </div>
+
+                <!-- Carrito con productos -->
+                <div id="carrito-items">
+                    <!-- Los artículos del carrito se mostrarán aquí -->
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h2>Resumen del Pedido</h2>
+                <div id="total-carrito" style="display: none;">
+                    <h3>Precio Total</h3>
+                    <p id="precio-total">= n Productos</p>
+                    <p id="precio-total-valor">= $ Productos</p>
+                    <button class="btn btn-primary mt-4" id="finalizar-compra">Pagar</button>
+                </div>
+
+                <!-- Productos recomendados -->
+                <div id="recomendaciones">
+                    <h3>Productos que te pueden interesar</h3>
+                    <div id="productos-recomendados">
+                        <!-- Los productos recomendados se mostrarán aquí dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="btn btn-primary mt-4" id="seguir-comprando">Seguir Comprando</button>
+    </div>
+
+    <audio id="sonidoPago" src="./sonidoPago.mp3"></audio>
+    <!-- Contenedor del pie de página -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../Header_y_footer/header_y_footer.js"></script>
+    <script src="./FuncionCarrito.js"></script>
 </body>
 </html>
