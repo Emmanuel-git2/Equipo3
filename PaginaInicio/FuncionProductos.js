@@ -8,7 +8,7 @@ function agregarProducto(item) {
                     <h5 class="card-title">${item.name}</h5>
                     <p class="card-text">${item.description}</p>
                     <p class="card-text"><strong>Precio:</strong> ${item.price ? `$${item.price.toFixed(2)}` : 'No especificado'}</p>
-                    <a href="carrito.html" class="btn">Agregar</a>
+                    <a href="../Carrito/carrito.html" class="btn">Agregar</a>
                 </div>
             </div>
         </div>`;

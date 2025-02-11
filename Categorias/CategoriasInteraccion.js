@@ -34,8 +34,8 @@ function agregarProducto(item, containerId) {
                 <div class="card-body text-center">
                     <h5 class="card-title">${item.name}</h5>
                     <p class="card-text">${item.description}</p>
-                    <p class="card-text"><strong>Precio:</strong> $${item.price.toFixed(2)}</p>
-                    <a href="carrito.html" class="btn btn-primary">Agregar</a>
+                    <p class="card-text"><strong id="title-text">Precio:</strong> $${item.price.toFixed(2)}</p>
+                    <a href="../Carrito/carrito.html" class="btncards">Agregar</a>
                 </div>
             </div>
         </div>`;
