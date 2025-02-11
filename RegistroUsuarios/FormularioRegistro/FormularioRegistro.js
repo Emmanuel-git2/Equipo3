@@ -104,7 +104,8 @@ document.addEventListener("DOMContentLoaded", function () {
     
     function validatePostCode() {
         const postCode = postCodeField.value.trim();
-        const isValid = /^\d{5}$/.test(postCode);
+        const isValid = /^\d{5}$/.test(postCode) && 
+                       !/^(.)\1{5}$/.test(postCode);
         setValidationState(postCodeField, isValid, "El código postal debe contener 5 dígitos.");
     }
 
