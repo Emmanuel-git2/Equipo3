@@ -44,9 +44,10 @@ function validatePhone(phone) {
     // Verifica patrones no realistas
     const repeatedPattern = /^(\d)\1{9}$/; // Detecta secuencias repetidas de 10 dígitos (ej. "0000000000")
     const sequentialPattern = /^(0123456789|9876543210)$/; // Detecta secuencias incrementales o decrementales
+    const unrealisticPattern = /^(000000000[1-9])$/; // Detecta patrones como "0000000001", "0000000002", etc.
 
     // Valida que no coincida con patrones no permitidos
-    const isValid = validLength && isNumeric && !repeatedPattern.test(phoneValue) && !sequentialPattern.test(phoneValue);
+    const isValid = validLength && isNumeric && !repeatedPattern.test(phoneValue) && !sequentialPattern.test(phoneValue) && !unrealisticPattern.test(phoneValue);
 
     return isValid; // Retorna true si es válido
 }
