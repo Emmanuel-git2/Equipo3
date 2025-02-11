@@ -22,16 +22,16 @@ function agregarProducto(item) {
 
 // Agregar productos estáticos
 
-agregarProducto({ name: 'Husky', img: 'imagenes/Husky.jpg', description: 'Bloques de construcción perro Husky', price: 459.00 });
-agregarProducto({ name: 'Uvas', img: 'imagenes/Uvas.jpg', description: 'Bloques de construcción uvas', price: 280.00 });
-agregarProducto({ name: 'Frutas', img: 'imagenes/Frutas.jpg', description: 'Bloques de construcción frutas', price: 249.00 });
-agregarProducto({ name: 'Kiwi', img: 'imagenes/Kiwi.jpg', description: 'Bloques de construcción de kiwi', price: 367.00 });
-agregarProducto({ name: 'Aguacate', img: 'imagenes/Aguacate.jpg', description: 'Bloques de construcción de Aguacate', price: 299.00 });
-agregarProducto({ name: 'Pajarito Rojo', img: 'imagenes/PajaroRojo.jpg', description: 'Bloques de construcción de pajarito', price: 360.00 });
-agregarProducto({ name: 'Pajarito Azul y Blanco', img: 'imagenes/PajaroAzulConBlanco.jpg', description: 'Bloques de construcción de Pajarito blanco con Azul', price: 260.00 });
-agregarProducto({ name: 'Ballena', img: 'imagenes/BallenaNegra.jpg', description: 'Bloques de construcción de ballena', price: 420.00 });
-agregarProducto({ name: 'Pingüino', img: 'imagenes/Pinguino.jpg', description: 'Bloques de construcción de pingüino', price: 450.00 });
-agregarProducto({ name: 'Cactus', img: 'imagenes/Cactus.jpg', description: 'Bloques de construcción de cactus', price: 199.00 });
+agregarProducto({ name: 'Bambú', img: 'imagenes/Bambu.webp', description: 'Bambú de la suerte', price: 200.00 });
+agregarProducto({ name: 'Dumbo', img: 'imagenes/dumbo.webp', description: 'Dumbo de Disney', price: 280.00 });
+agregarProducto({ name: 'Ígor', img: 'imagenes/igor.webp', description: 'Ígor de Disney', price: 249.00 });
+agregarProducto({ name: 'Mei Panda Rojo', img: 'imagenes/panda.webp', description: 'Mei Panda Rojo de Disney', price: 367.00 });
+agregarProducto({ name: 'Gato', img: 'imagenes/gato.webp', description: 'Gato juguetón', price: 299.00 });
+agregarProducto({ name: 'Moto Yoshi', img: 'imagenes/motoYoshi.webp', description: 'Mario Kart : Moto Yoshi', price: 360.00 });
+agregarProducto({ name: 'Miniorquídea', img: 'imagenes/orquidea.webp', description: 'Miniorquídea color melón', price: 260.00 });
+agregarProducto({ name: 'Rosas', img: 'imagenes/rosas.webp', description: 'Rosas', price: 200.00 });
+agregarProducto({ name: 'Arreglo Floral', img: 'imagenes/arreglo.webp', description: 'Arreglo Floral de varios colores', price: 450.00 });
+agregarProducto({ name: 'Ciruelo', img: 'imagenes/ciruelo.webp', description: 'Flor de Ciruelo', price: 199.00 });
 
 
 // Función para mostrar productos dinámicos (almacenados en localStorage)
