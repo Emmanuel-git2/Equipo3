@@ -212,35 +212,59 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    //Función para crear arreglo en formato JSON, guardar en localStorage y redirigir a login
-    function saveDataToLocalStorageAndRedirect() {
+    //Función para crear arreglo en formato JSON, guardar BAckend y redirigir a login
+    function saveDataToAPIAndRedirect() {
         const userData = {
-            name: nameField.value.trim(),
-            userName: userNameField.value.trim(),
-            phone: numberPhoneField.value.trim(),
-            postCode: postCodeField.value.trim(),
+            nombre: nameField.value.trim(),
             email: emailField.value.trim(),
-            password: passwordField.value.trim(), 
+            contraseña: passwordField.value.trim(),
+            direccion: postCodeField.value.trim()
         };
-        
-        // Verificar si el correo ya está registrado
-        const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
-        const emailExists = existingUsers.some(user => user.email === userData.email);
     
-        if (emailExists) {
-            // Si el correo ya existe, mostrar el modal de error
-            $('#emailErrorModal').modal('show');
-            return;
-        }
+        // Verificar si el correo ya está registrado en la API antes de registrarlo
+        fetch(`http://localhost:8080/api/usuarios/email/${userData.email}`)
+            .then(response => {
+                if (response.status === 404) {
+                    // Si el usuario no existe (HTTP 404), se puede registrar
+                    return registerUser(userData);
+                } else if (response.ok) {
+                    // Si el correo ya existe, mostrar el modal de error
+                    $('#emailErrorModal').modal('show');
+                    throw new Error("El correo ya está registrado.");
+                } else {
+                    throw new Error(`Error en la verificación: ${response.status}`);
+                }
+            })
+            .catch(error => {
+                console.error("Error al verificar el correo:", error);
+            });
+    }
     
-        // Si no existe, guardar los datos del usuario
-        existingUsers.push(userData);
-        localStorage.setItem("users", JSON.stringify(existingUsers));
-        console.log("Usuarios guardados:", existingUsers);
-        
-        // Mostrar modal de éxito
-        $('#successModal').modal('show');
-        document.getElementById("successModal").removeAttribute("inert");
+    // Función para registrar solo si el correo no esta ya registrado
+    function registerUser(userData) {
+        return fetch("http://localhost:8080/api/usuarios/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(userData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error HTTP: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Usuario registrado en API:", data);
+    
+            // Mostrar modal de éxito y limpiar formulario
+            $('#successModal').modal('show');
+            document.getElementById("successModal").removeAttribute("inert");
+            clearForm();
+        })
+        .catch(error => {
+            console.error("Error al registrar en API:", error);
+            alert("Hubo un error al registrar el usuario. Inténtalo nuevamente.");
+        });
     }
     
     // Función para redirigir al login cuando el usuario hace clic en "Ir al Login"
@@ -278,12 +302,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Guardar datos y redirigir al hacer clic en Registrar
     
     if (registerButton) {
-    registerButton.addEventListener("click", function (event) {
-        event.preventDefault();
-        if (form.checkValidity()) {
-            saveDataToLocalStorageAndRedirect();
-            clearForm();
-        }
-    });
-  }
+        registerButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            if (form.checkValidity()) {
+                saveDataToAPIAndRedirect();
+            }
+        });
+    }
 });
