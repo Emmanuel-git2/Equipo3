@@ -1,30 +1,35 @@
-document.addEventListener("DOMContentLoaded", function() {
-    actualizarContador();
-    actualizarCarrito();
-    mostrarProductosRecomendados();
-});
+// funcionCarrito.js
+
+// Importa 'productos' si está en otro archivo
+import { productos } from '../PaginaInicio/FuncionProductos.js';
 
 // Array para almacenar los artículos del carrito
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-// Función para actualizar el contador de artículos y la imagen del carrito
-function actualizarContador() {
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+// Función para añadir al carrito
+export function añadirAlCarrito(name, price, img, category) {
+    const index = carrito.findIndex(item => item.name === name);
+    if (index !== -1) {
+        carrito[index].quantity++;
+    } else {
+        carrito.push({ name, price, img, category, quantity: 1 });
+    }
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    actualizarContador();
+    actualizarCarrito(); // Actualiza el carrito y muestra recomendaciones
+}
+
+// Función para actualizar el contador del carrito
+export function actualizarContador() {
     const contadorCarrito = document.getElementById('contador-carrito');
-    const imagenCarrito = document.querySelector('a[href="../Carrito/carrito.html"] img');
     if (contadorCarrito) {
         const totalItems = carrito.reduce((sum, item) => sum + item.quantity, 0);
         contadorCarrito.textContent = `(${totalItems})`;
-        if (totalItems === 0) {
-            imagenCarrito.src = "../Carrito/Imagenes/Carritovacio.png";
-        } else {
-            imagenCarrito.src = "../Carrito/Imagenes/Carritolleno.png";
-        }
     }
 }
 
-// Función para mostrar la notificación
-function mostrarNotificacion(mensaje) {
+// Función para mostrar notificaciones
+export function mostrarNotificacion(mensaje) {
     const notificacion = document.getElementById('notification');
     notificacion.textContent = mensaje;
     notificacion.classList.remove('hidden');
@@ -35,29 +40,75 @@ function mostrarNotificacion(mensaje) {
     }, 3000); // Oculta la notificación después de 3 segundos
 }
 
-// Función para añadir un artículo al carrito
-function añadirAlCarrito(nombre, precio, img) {
-    const index = carrito.findIndex(item => item.nombre === nombre);
-
-    if (index !== -1) {
-        carrito[index].quantity++;
-    } else {
-        carrito.push({ nombre, precio, img, quantity: 1 });
+// Función para mostrar productos recomendados
+function mostrarProductosRecomendados() {
+    const productosRecomendadosContainer = document.getElementById('productos-recomendados');
+    if (!productosRecomendadosContainer) {
+        console.error("El contenedor 'productos-recomendados' no existe");
+        return;
     }
 
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-    actualizarCarrito();
-    actualizarContador();
-    mostrarNotificacion(`"${nombre}" agregado al carrito`);
+    // Obtener las categorías de los productos en el carrito
+    const categoriasEnCarrito = [...new Set(carrito.map(item => item.category))];
+
+    // Filtrar productos que NO están en el carrito y pertenecen a las mismas categorías
+    const productosFiltrados = productos
+        .filter(producto => 
+            categoriasEnCarrito.includes(producto.category) && 
+            !carrito.some(item => item.name === producto.name)
+        )
+        .slice(0, 4); // Limita a 4 productos recomendados
+
+    // Generar el HTML para los productos recomendados
+    productosRecomendadosContainer.innerHTML = productosFiltrados.length > 0
+        ? productosFiltrados.map(producto => `
+            <div class="producto-recomendado">
+                <img src="${ajustarRutaImagen(producto.img)}" alt="${producto.name}">
+                <p>${producto.name}</p>
+                <p>Precio: $${producto.price.toFixed(2)}</p>
+                <button class="btn btn-secondary add-to-cart" data-name="${producto.name}" data-price="${producto.price}" data-img="${producto.img}" data-category="${producto.category}">Agregar al Carrito</button>
+            </div>
+        `).join('')
+        : '<p>No hay productos recomendados para estas categorías.</p>';
 }
 
-// Función para eliminar un artículo del carrito
-function eliminarItem(index) {
-    carrito.splice(index, 1);
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-    actualizarCarrito();
-    actualizarContador();
+// Función para ajustar la ruta de la imagen
+function ajustarRutaImagen(rutaImagen) {
+    // Si la ruta ya es absoluta, regresarla tal cual
+    if (rutaImagen.startsWith('http') || rutaImagen.startsWith('/')) {
+        return rutaImagen;
+    }
+    // Ajustamos la ruta de imagen relativa
+    return '../' + rutaImagen; // Desde carrito.html, subimos un nivel para acceder a las imágenes
 }
+
+// Escuchar eventos al cargar el DOM
+document.addEventListener("DOMContentLoaded", () => {
+    actualizarContador();
+    actualizarCarrito(); // Carga los productos en el carrito al iniciar la página
+
+    // Delegación de eventos para botones
+    document.body.addEventListener('click', event => {
+        if (event.target.classList.contains('add-to-cart')) {
+            event.preventDefault();
+            const name = event.target.dataset.name;
+            const price = parseFloat(event.target.dataset.price);
+            const img = event.target.dataset.img;
+            const category = event.target.dataset.category;
+            añadirAlCarrito(name, price, img, category);
+            mostrarNotificacion(`"${name}" agregado al carrito`);
+        } else if (event.target.classList.contains('btn-quitar')) {
+            const index = parseInt(event.target.dataset.index);
+            eliminarItem(index);
+        } else if (event.target.id === 'seguir-comprando') {
+            window.location.href = '../Categorias/categorias.html';
+        } else if (event.target.id === 'Ir-a-ver-el-Catálogo') {
+            window.location.href = '../Categorias/categorias.html';
+        } else if (event.target.id === 'finalizar-compra') {
+            finalizarCompra();
+        }
+    });
+});
 
 // Función para actualizar la visualización del carrito
 function actualizarCarrito() {
@@ -65,7 +116,7 @@ function actualizarCarrito() {
     const carritoVacio = document.getElementById('carrito-vacio');
     const totalCarrito = document.getElementById('total-carrito');
     const seguirComprando = document.getElementById('seguir-comprando');
-    
+
     if (carritoItems) {
         carritoItems.innerHTML = '';
         carrito.forEach((item, index) => {
@@ -73,96 +124,55 @@ function actualizarCarrito() {
             itemDiv.classList.add('card', 'mb-3');
             itemDiv.innerHTML = `
                 <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="${item.img}" class="img-fluid rounded-start" alt="${item.nombre}">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <img src="${ajustarRutaImagen(item.img)}" class="img-fluid rounded-start" alt="${item.name}" style="width: 100%; object-fit: cover; border: 1px solid #ddd;">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">${item.nombre}</h5>
-                            <p class="card-text">Precio: $${item.precio}</p>
-                            <p class="card-text">Cantidad: ${item.quantity}</p>
-                            <button class="btn btn-danger" onclick="eliminarItem(${index})">Quitar del Carrito</button>
+                            <h5 class="card-title">${item.name}</h5>
+                            <p class="card-text"><strong>Precio:</strong> $${item.price.toFixed(2)}</p>
+                            <p class="card-text"><strong>Cantidad:</strong> ${item.quantity}</p>
+                            <button class="btn btn-danger btn-quitar" data-index="${index}">Quitar del Carrito</button>
                         </div>
                     </div>
                 </div>
             `;
             carritoItems.appendChild(itemDiv);
         });
-        
-        const total = carrito.reduce((acc, item) => acc + item.precio * item.quantity, 0);
+
+        const total = carrito.reduce((acc, item) => acc + item.price * item.quantity, 0);
         document.getElementById('precio-total-valor').textContent = `Total: $${total.toFixed(2)}`;
-    }
-    
-    // Mostrar u ocultar el contenido según el estado del carrito
-    if (carrito.length === 0) {
-        carritoVacio.style.display = 'block';
-        totalCarrito.style.display = 'none';
-        carritoItems.style.display = 'none';
-        seguirComprando.style.display = 'none'; // Ocultar el botón "Seguir Comprando"
-    } else {
-        carritoVacio.style.display = 'none';
-        totalCarrito.style.display = 'block';
-        carritoItems.style.display = 'block';
-        seguirComprando.style.display = 'block'; // Mostrar el botón "Seguir Comprando"
+
+        // Mostrar u ocultar el contenido según el estado del carrito
+        if (carrito.length === 0) {
+            carritoVacio.style.display = 'block';
+            totalCarrito.style.display = 'none';
+            carritoItems.style.display = 'none';
+            seguirComprando.style.display = 'none';
+        } else {
+            carritoVacio.style.display = 'none';
+            totalCarrito.style.display = 'block';
+            carritoItems.style.display = 'block';
+            seguirComprando.style.display = 'block';
+        }
+
+        mostrarProductosRecomendados(); // Muestra los productos recomendados
     }
 }
 
-// Función para finalizar la compra
-document.getElementById('finalizar-compra').addEventListener('click', () => {
-    document.getElementById('sonidoPago').play();
-    alert('Compra finalizada');
-    carrito = [];
-    localStorage.removeItem('carrito');
-    actualizarCarrito();
+// Función para eliminar un producto del carrito
+function eliminarItem(index) {
+    carrito.splice(index, 1);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
     actualizarContador();
-});
+    actualizarCarrito(); // Actualiza el carrito y muestra recomendaciones
+}
 
-// Función para seguir comprando (redirigir a la página de catalogo)
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById('Ir-a-ver-el-Catálogo').addEventListener('click', () => {
-        window.location.href = '../Categorias/categorias.html';
-    });
-});
-
-// Función para ir a ver el Catalogo (redirigir a la página de catalogo)
-document.getElementById('seguir-comprando').addEventListener('click', () => {
-    window.location.href = '../Categorias/categorias.html';
-});
-
-// Elemento para notificaciones (añádelo en tu HTML si no lo tienes)
-document.body.insertAdjacentHTML('beforeend', '<div id="notification" class="notification hidden"></div>');
-
-// Función para mostrar productos recomendados
-function mostrarProductosRecomendados() {
-    const productos = [
-        { name: 'Husky', img: '../imagenes/Husky.jpg', description: 'Bloques de construcción perro Husky', price: 20, category: 'Animales' },
-        { name: 'Uvas', img: '../imagenes/Uvas.jpg', description: 'Bloques de construcción uvas', price: 15, category: 'Frutas' },
-        { name: 'Frutas', img: '../imagenes/Frutas.jpg', description: 'Bloques de construcción frutas', price: 10, category: 'Frutas' },
-        { name: 'Kiwi', img: '../imagenes/Kiwi.jpg', description: 'Bloques de construcción de kiwi', price: 10, category: 'Frutas' },
-        { name: 'Aguacate', img: '../imagenes/Aguacate.jpg', description: 'Bloques de construcción de Aguacate', price: 12, category: 'Frutas' },
-        { name: 'Pajarito Rojo', img: '../imagenes/PajaroRojo.jpg', description: 'Bloques de construcción de pajarito', price: 8, category: 'Animales' },
-        { name: 'Pajarito Azul y Blanco', img: '../imagenes/PajaroAzulConBlanco.jpg', description: 'Bloques de construcción de Pajarito blanco con Azul', price: 9, category: 'Animales' },
-        { name: 'Ballena', img: '../imagenes/BallenaNegra.jpg', description: 'Bloques de construcción de ballena', price: 22, category: 'Animales' },
-        { name: 'Pingüino', img: '../imagenes/Pinguino.jpg', description: 'Bloques de construcción de pingüino', price: 18, category: 'Animales' },
-        { name: 'Cactus', img: '../imagenes/Cactus.jpg', description: 'Bloques de construcción de cactus', price: 14, category: 'Plantas' }
-    ];
-
-    const categoriasEnCarrito = [...new Set(carrito.map(item => item.category))]; // Obtener categorías únicas de los productos en el carrito
-    let productosFiltrados = productos.filter(producto => categoriasEnCarrito.includes(producto.category)); // Filtrar productos por categoría
-    productosFiltrados = productosFiltrados.slice(0, 4); // Limitar a 4 productos
-
-    const productosRecomendadosContainer = document.getElementById('productos-recomendados');
-    productosRecomendadosContainer.innerHTML = ''; // Limpiar contenedor de productos recomendados
-
-    productosFiltrados.forEach((producto) => {
-        const itemHTML = `
-            <div class="producto">
-                <img src="${producto.img}" alt="${producto.name}">
-                <p>${producto.name}</p>
-                <p>Precio: $${producto.price}</p>
-                <button class="btn btn-secondary" onclick="añadirAlCarrito('${producto.name}', ${producto.price})">Agregar al Carrito</button>
-            </div>
-        `;
-        productosRecomendadosContainer.insertAdjacentHTML('beforeend', itemHTML);
-    });
+// Función para finalizar la compra
+function finalizarCompra() {
+    alert('¡Gracias por tu compra! Tu pedido ha sido procesado.');
+    carrito = [];
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    actualizarContador();
+    actualizarCarrito(); // Actualiza el carrito y muestra recomendaciones
 }

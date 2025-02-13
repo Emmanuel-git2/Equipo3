@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BrickMania</title>
+    <title>BrickManía</title>
     <!-- Horizon y Montserrat Classic -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet"
     />
     <!-- Bootstrap -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+        crossorigin="anonymous"
     />
     <!-- Bootstrap Icons -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
-      rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+        rel="stylesheet"
     />
     <link rel="stylesheet" href="./PaginaInicio.css">
 </head>
@@ -30,61 +30,75 @@
   <div class="card text">
     <img src="./imagenes/Inspirational Gradient Desktop Background.png" class="card-img" alt="Fondo Azul" height="210px">
     <div class="card-img-overlay">
-      <h5 class="card-title" id="TituloUno">Brick<span id="TituloDos">Mania</span></h5>
+      <h5 class="card-title" id="TituloUno">Brick<span id="TituloDos">Manía</span></h5>
       <p class="card-text" id="Eslogan">Construye tu creatividad</p>
       <button type="button" class="btn btn-primary">Entrar</button><span> </span><button type="button" class="btn btn-dark">Registrar</button>
     </div>
   </div>
-    <!--Carrusel-->
-    <div id="carouselExampleIndicators" class="carousel slide">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-          </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="./imagenes/BrickClub_group_of_kids.jpg" class="d-block w-100" alt="Club de bloques">
-            </div>
-            <div class="carousel-item">
-              <img src="./imagenes/rick-mason-2FaCKyEEtis-unsplash.avif"class="d-block w-100" alt="Jugando">
-            </div>
-            <div class="carousel-item">
-              <img src="./imagenes/ImagenBloques.png" class="d-block w-100" alt="Imagen Bloques">
-            </div>
-          </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+
+  <!--Carrusel-->
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-    <!--Mas-->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="./imagenes/BrickClub_group_of_kids.jpg" class="d-block w-100" alt="Club de bloques">
+      </div>
+      <div class="carousel-item">
+        <img src="./imagenes/rick-mason-2FaCKyEEtis-unsplash.avif"class="d-block w-100" alt="Jugando">
+      </div>
+      <div class="carousel-item">
+        <img src="./imagenes/ImagenBloques.png" class="d-block w-100" alt="Imagen Bloques">
+      </div>
+    </div>
+  
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <!--Más-->
  <main>
     <p class="quienS">Quienes Somos</p>
-    <p>Somos tu tienda online preferida, donde encontrarás todo tipo de bloques de construccion. 
+    <p>Somos tu tienda online preferida, donde encontrarás todo tipo de bloques de construcción. 
       Ponemos a tu alcance todos los diseños que no has podido encontrar, desde los más comunes 
       hasta ediciones especiales. </p>
       
       <div class="container-fluid mt-5">
-        <h2>Productos Disponibles</h2>
+        <div class="container-fluid" id="prodDisponible">
+          <h2>Productos Destacados</h2>
+        </div>
         
-        <div class="container-fluid">
-          <div class="row" id="list-items">
+        <div class="container-fluid" id="productos_inicio">
+          <div class="row" id="listProducts">
               <!-- Las tarjetas se insertarán aquí -->
           </div>
+        </div>
+        
       </div>
-      
-    </div>
    </main>
- 
-    <!-- <script src="head.js"></script> -->
+
+    <!-- Cargar scripts al final del cuerpo para una carga más rápida -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../Header_y_footer/header_y_footer.js"></script>
-    <script src="FuncionProductos.js"></script>
+    <!-- <script type='module' src="../Categorias/CategoriasInteraccion.js"></script> -->
+    <script type="module" src="../Carrito/funcionCarrito.js"></script>
+    <script type="module" src="./FuncionProductos.js"></script>
+
+    <!-- Elemento para notificaciones -->
+    <div id="notification" class="notification hidden"></div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 </body>
 </html>
-    <!-- Incluir Bootstrap JS y dependencias de Popper.js y jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js">

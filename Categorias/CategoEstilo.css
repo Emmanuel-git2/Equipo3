@@ -1,21 +1,181 @@
-body{
-    background-color: rgb(244, 244, 244);
-}
-.scrollspy-example-2 {
-    padding: 15px;
+body {
+    font-family: 'Montserrat', sans-serif;
     background-color: #f8f9fa;
-    border-radius: 5px;
+}
+.category-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 20px;
+}
+.category-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+.category-card {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+.category-card:hover {
+    transform: scale(1.05);
+}
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-a.nav-link {
-    transition: color 0.3s ease;
-}
-a.nav-link:hover {
-    color: #007bff;
+.category-card .category-name {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
 /*EStilo de fondo para resaltar el enlace activo del*/
 .nav-link.active {
     font-weight: bold;
     color: #007bff;
+}
+
+/*Expander las cards al pasar el mouse*/
+.card {
+    transition: transform 0.3s ease-in-out;
+    cursor:auto;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.5);
+    z-index: 1000;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/*Estilos para las cards de catgerias*/
+.btncards {
+    background-color: #5CC8F2;
+    border-color: #5CC8F2;
+    color: white;
+    font-weight: bold;
+    padding: 8px 20px;
+    border-radius: 5px;
+    margin-top: auto;
+    align-self: center; 
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none; /* Elimina el subrayado */
+    display: inline-block; /* Asegura que se comporte como un botón */
+}
+
+.card-body .card-title{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    color: #BF60A6;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    position: relative;
+    background-color: #f9f9f9;
+    background: linear-gradient(to bottom, #f9f9f9(92, 200, 242, 0.7), #f9f9f9(92, 200, 242, 0));
+}
+
+/*Subrayado*/
+.card-body .card-title::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px; 
+    background-color: rgba(191, 96, 166, 0.5); /* Rosa con transparencia */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.card-body {
+    background-color: #f9f9f9; /* Fondo claro para el cuerpo de la card */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    flex-grow: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    
+}
+
+.card-body .card-text {
+    font-size: 1rem;
+    color: #555555; /* Color gris claro */
+    margin-bottom: 10px;
+}
+
+.card-body #title-text {
+    color: #BF60A6;
+}
+
+.carousel-inner img{
+    border-bottom: 2px solid #F2E527; 
+}
+
+/*Estilos para categorias*/
+h4 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-style:bold; 
+    font-weight: bold;
+    font-size: 30px;
+    color:#F22E2E;
+    text-transform: uppercase; 
+    padding-bottom: 20px; 
+    margin-bottom: 10px; /* Separación con el contenido siguiente */
+    text-align: center;
+    background-color: #f2e527;
+    background-image: linear-gradient(0deg, #f2e527 0%, #5cc8f2 100%);
+
+}
+
+
+.containerCat{
+    font-family: 'Montserrat', sans-serif;
+    font-style:bold; 
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #020202; 
+    margin-bottom: 10px; 
+    border-bottom: 3px solid #F2E527;
+    padding: 10px;
+    border-radius: 5px; 
+}
+
+
+/* Estilo adicional para el texto debajo de los títulos, como descripciones */
+p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p.alinear-izquierda {
+    text-align: left;
+    padding-left: 10px; 
+    color: #555;
 }
