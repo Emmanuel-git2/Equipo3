@@ -19,7 +19,7 @@ function validarCorreo(email) {
 }
 
 // Evento de click para el botón de inicio de sesión
-btnInicio.addEventListener("click", function (event) {
+btnInicio.addEventListener("click", async function (event) {
     event.preventDefault();
 
     // Reiniciar estilos y mensajes
@@ -63,27 +63,43 @@ btnInicio.addEventListener("click", function (event) {
         return; // Salir si hay errores
     }
 
-    // Lógica de autenticación
-    const usuariosRegistrados = JSON.parse(localStorage.getItem("users")) || [];
-    const usuarioEncontrado = usuariosRegistrados.find(
-        (usuario) => usuario.email === txtEmail.value && usuario.password === txtPassword.value
-    );
+    // Enviar la solicitud al API de autenticación
+    try {
+        const response = await fetch("https://tudominio.com/api/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: txtEmail.value,
+                password: txtPassword.value
+            })
+        });
 
-    if (usuarioEncontrado) {
-        // Almacenar datos en sessionStorage
-        sessionStorage.setItem("usuarioActivo", JSON.stringify({ email: usuarioEncontrado.email,
-            userName :usuarioEncontrado.userName
-        }));
+        const data = await response.json();
 
-        // Limpiar campos
-        txtEmail.value = "";
-        txtPassword.value = "";
+        if (response.ok) {
+            // Almacenar el token en sessionStorage o localStorage
+            sessionStorage.setItem("token", data.token);
+            sessionStorage.setItem("usuarioActivo", JSON.stringify({
+                email: data.email,
+                userName: data.userName
+            }));
 
-        // Redirigir a la página de inicio
-        window.location.href = "http://127.0.0.1:5501/PaginaInicio/PaginaInicio.html"; // Cambia la ruta según corresponda
-    } else {
-        generalError.innerText = "El correo electrónico no corresponde con la contraseña ingresada.";
-        txtEmail.classList.add("input-error");
-        txtPassword.classList.add("input-error");
+            // Limpiar campos
+            txtEmail.value = "";
+            txtPassword.value = "";
+
+            // Redirigir a la página de inicio
+            window.location.href = "http://127.0.0.1:5501/PaginaInicio/PaginaInicio.html"; // Cambia la ruta según corresponda
+        } else {
+            // Manejar errores de autenticación
+            generalError.innerText = data.message || "Correo o contraseña incorrectos.";
+            txtEmail.classList.add("input-error");
+            txtPassword.classList.add("input-error");
+        }
+    } catch (error) {
+        console.error("Error en la autenticación:", error);
+        generalError.innerText = "Error al conectar con el servidor.";
     }
 });
