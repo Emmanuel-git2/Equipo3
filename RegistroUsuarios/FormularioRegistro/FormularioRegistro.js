@@ -25,29 +25,29 @@ document.addEventListener("DOMContentLoaded", function () {
         $('#termsModal').modal('show');
         termsModal.removeAttribute("inert"); // Habilita la interacción con el modal
     });
-    
+
     // Función para aceptar los términos y condiciones
     acceptBtn.addEventListener("click", function () {
         $('#termsModal').modal('hide');
         gridCheck.checked = true; // Marca el checkbox automáticamente
         gridCheck.disabled = false; // Habilita el checkbox para permitir interacción
-    
+
         // Actualiza la opacidad del texto asociado al checkbox
         checkboxLabel.style.opacity = "1"; // Hace visible el texto
         checkboxLabel.classList.remove("disabled");
-    
+
         // Verifica si el formulario es válido después de aceptar los términos
         checkFormValidity();
     });
 
     function initializeCheckboxLabel() {
         if (gridCheck.checked) {
-            checkboxLabel.style.opacity = "1"; 
+            checkboxLabel.style.opacity = "1";
         } else {
-            checkboxLabel.style.opacity = "0.5"; 
+            checkboxLabel.style.opacity = "0.5";
         }
     }
-    
+
     initializeCheckboxLabel();
 
     // Función para habilitar o deshabilitar el botón de registro
@@ -96,16 +96,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function validatePhone() {
         const phone = numberPhoneField.value.trim();
-        const isValid = /^\d{10}$/.test(phone) && 
-                        !/^(.)\1{9}$/.test(phone) && 
-                        !/^(0123456789|9876543210)$/.test(phone);   
+        const isValid = /^\d{10}$/.test(phone) &&
+            !/^(.)\1{9}$/.test(phone) &&
+            !/^(0123456789|9876543210)$/.test(phone);
         setValidationState(numberPhoneField, isValid, "El número de teléfono debe ser válido y a 10 dígitos.");
     }
-    
+
     function validatePostCode() {
         const postCode = postCodeField.value.trim();
-        const isValid = /^\d{5}$/.test(postCode) && 
-                       !/^(.)\1{5}$/.test(postCode);
+        const isValid = /^\d{5}$/.test(postCode) &&
+            !/^(.)\1{5}$/.test(postCode);
         setValidationState(postCodeField, isValid, "El código postal debe contener 5 dígitos.");
     }
 
@@ -190,19 +190,19 @@ document.addEventListener("DOMContentLoaded", function () {
         passwordField.value = '';
         passwordConfirmField.value = '';
         gridCheck.checked = false;
-    
+
         // Limpiar las clases de validación
         const fields = [
-            nameField, 
-            userNameField, 
-            numberPhoneField, 
-            postCodeField, 
-            emailField, 
-            emailConfirmField, 
-            passwordField, 
+            nameField,
+            userNameField,
+            numberPhoneField,
+            postCodeField,
+            emailField,
+            emailConfirmField,
+            passwordField,
             passwordConfirmField
         ];
-    
+
         fields.forEach(field => {
             field.classList.remove("is-valid", "is-invalid");
             const errorElement = field.nextElementSibling;
@@ -212,7 +212,22 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    //Función para crear arreglo en formato JSON, guardar BAckend y redirigir a login
+    // Función para verificar si todos los campos son válidos y habilitar el botón de registro
+    function checkFormValidity() {
+        const isValid = nameField.checkValidity() &&
+            userNameField.checkValidity() &&
+            numberPhoneField.checkValidity() &&
+            postCodeField.checkValidity() &&
+            emailField.checkValidity() &&
+            emailConfirmField.checkValidity() &&
+            passwordField.checkValidity() &&
+            passwordConfirmField.checkValidity() &&
+            gridCheck.checked;
+
+        registerButton.disabled = !isValid;
+    }
+
+    // Función para crear arreglo en formato JSON, guardar en Backend y redirigir a login 
     function saveDataToAPIAndRedirect() {
         const userData = {
             nombre: nameField.value.trim(),
@@ -220,15 +235,14 @@ document.addEventListener("DOMContentLoaded", function () {
             contraseña: passwordField.value.trim(),
             direccion: postCodeField.value.trim()
         };
-    
+
         // Verificar si el correo ya está registrado en la API antes de registrarlo
-        fetch(`http://localhost:8080/api/usuarios/email/${userData.email}`)
+        fetch(`http://127.0.0.1:8080/api/usuarios/email/${userData.email}`)
             .then(response => {
                 if (response.status === 404) {
-                    // Si el usuario no existe (HTTP 404), se puede registrar
                     return registerUser(userData);
                 } else if (response.ok) {
-                    // Si el correo ya existe, mostrar el modal de error
+                    // Mostrar el modal de error de correo registrado
                     $('#emailErrorModal').modal('show');
                     throw new Error("El correo ya está registrado.");
                 } else {
@@ -237,61 +251,76 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(error => {
                 console.error("Error al verificar el correo:", error);
+                setValidationState(emailField, false, "No se pudo verificar el correo. Inténtalo nuevamente.");
             });
     }
-    
-    // Función para registrar solo si el correo no esta ya registrado
+
+    // Función para registrar solo si el correo no está registrado
     function registerUser(userData) {
-        return fetch("http://localhost:8080/api/usuarios/", {
+        return fetch("http://127.0.0.1:8080/api/usuarios/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(userData)
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error HTTP: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log("Usuario registrado en API:", data);
-    
-            // Mostrar modal de éxito y limpiar formulario
-            $('#successModal').modal('show');
-            document.getElementById("successModal").removeAttribute("inert");
-            clearForm();
-        })
-        .catch(error => {
-            console.error("Error al registrar en API:", error);
-            alert("Hubo un error al registrar el usuario. Inténtalo nuevamente.");
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error HTTP: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Usuario registrado en API:", data);
+                $('#successModal').modal('show');
+                clearForm();
+            })
+            .catch(error => {
+                console.error("Error al registrar en API:", error);
+                setValidationState(registerButton, false, "Hubo un error al registrar el usuario. Inténtalo nuevamente.");
+            });
     }
-    
+
     // Función para redirigir al login cuando el usuario hace clic en "Ir al Login"
     document.querySelectorAll(".redirect-Button").forEach(button => {
         button.addEventListener("click", () => {
             window.location.href = "../Login/login.html";
         });
     });
-    
 
     // Eventos de validación
-    
-    nameField.addEventListener("input", validateName);
-    userNameField.addEventListener("input", validateUserName);
-    numberPhoneField.addEventListener("input", validatePhone);
-    postCodeField.addEventListener("input", validatePostCode);
-  
+    nameField.addEventListener("input", function () {
+        validateName();
+        checkFormValidity();
+    });
+    userNameField.addEventListener("input", function () {
+        validateUserName();
+        checkFormValidity();
+    });
+    numberPhoneField.addEventListener("input", function () {
+        validatePhone();
+        checkFormValidity();
+    });
+    postCodeField.addEventListener("input", function () {
+        validatePostCode();
+        checkFormValidity();
+    });
     emailField.addEventListener("input", function () {
         validateEmail();
         validateEmailConfirm();
+        checkFormValidity();
     });
-    emailConfirmField.addEventListener("input", validateEmailConfirm);
+    emailConfirmField.addEventListener("input", function () {
+        validateEmailConfirm();
+        checkFormValidity();
+    });
     passwordField.addEventListener("input", function () {
         validatePassword(passwordField);
         validatePasswordConfirm();
+        checkFormValidity();
     });
-    passwordConfirmField.addEventListener("input", validatePasswordConfirm);
+    passwordConfirmField.addEventListener("input", function () {
+        validatePasswordConfirm();
+        checkFormValidity();
+    });
     gridCheck.addEventListener("change", checkFormValidity);
 
     nameField.addEventListener("blur", validateName);
@@ -300,7 +329,6 @@ document.addEventListener("DOMContentLoaded", function () {
     postCodeField.addEventListener("blur", validatePostCode);
 
     // Guardar datos y redirigir al hacer clic en Registrar
-    
     if (registerButton) {
         registerButton.addEventListener("click", function (event) {
             event.preventDefault();
@@ -309,4 +337,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+
+    // Verificar validez del formulario en cada cambio
+    checkFormValidity();
+
+
 });

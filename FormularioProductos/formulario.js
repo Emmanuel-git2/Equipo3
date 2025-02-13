@@ -1,12 +1,12 @@
 document.getElementById('uploadBtn').addEventListener('click', function () {
     cloudinary.openUploadWidget(
         {
-            cloudName: 'dy6sopjv3',  
-            uploadPreset: 'uw_formulario', 
+            cloudName: 'dy6sopjv3',
+            uploadPreset: 'uw_formulario',
             sources: ['local', 'url', 'camera'],
             multiple: false,
             cropping: true,
-            maxFileSize: 2000000 
+            maxFileSize: 2000000
         },
         function (error, result) {
             if (error) {
@@ -22,8 +22,9 @@ document.getElementById('uploadBtn').addEventListener('click', function () {
 });
 
 document.getElementById('submitBtn').addEventListener('click', function (event) {
-    event.preventDefault(); // ✅ Evita la recarga de la página
+    event.preventDefault();
 
+    const idProducto = document.getElementById('submitBtn').dataset.productId; // ✅ Verifica si es edición
     const nameField = document.getElementById('productName');
     const categoryField = document.getElementById('category');
     const descriptionField = document.getElementById('productDescription');
@@ -32,7 +33,6 @@ document.getElementById('submitBtn').addEventListener('click', function (event) 
 
     let isValid = true;
 
-    // ✅ Validaciones
     if (!categoryField.value) {
         categoryField.classList.add('is-invalid');
         isValid = false;
@@ -76,18 +76,19 @@ document.getElementById('submitBtn').addEventListener('click', function (event) 
         return;
     }
 
-    // ✅ Objeto JSON con la estructura correcta
     const producto = {
         nombre: nameField.value.trim(),
         descripcion: descriptionField.value.trim(),
         precio: price,
         categoria: { id_categoria: parseInt(categoryField.value) },
-        imagenUrl: imageField.value.trim() // ✅ Ahora sí se enviará al backend
+        imagenUrl: imageField.value.trim()
     };
 
-    // ✅ Enviar datos al backend con fetch
-    fetch("http://localhost:8080/api/Producto/", {
-        method: "POST",
+    const url = idProducto ? `http://localhost:8080/api/Producto/${idProducto}` : "http://localhost:8080/api/Producto/";
+    const method = idProducto ? "PUT" : "POST";
+
+    fetch(url, {
+        method: method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(producto)
     })
@@ -95,11 +96,12 @@ document.getElementById('submitBtn').addEventListener('click', function (event) 
         if (!response.ok) throw new Error("Error en la petición.");
         return response.json();
     })
-    .then(data => {
-        console.log("Producto agregado:", data);
-        alert("Producto agregado correctamente!");
+    .then(() => {
+        alert(idProducto ? "Producto actualizado correctamente" : "Producto agregado correctamente");
         document.getElementById("productForm").reset();
-        cargarProductos();
+        document.getElementById('submitBtn').textContent = "Agregar Producto";
+        delete document.getElementById('submitBtn').dataset.productId;
+        cargarProductos(); // ✅ Refrescar la tabla después de actualizar
     })
     .catch(error => console.error("Error:", error));
 });
@@ -111,15 +113,14 @@ function cargarProductos() {
         console.log("Productos recibidos:", data);
 
         const productosTable = document.getElementById('productosTable');
-        productosTable.innerHTML = ''; 
+        productosTable.innerHTML = '';
 
         data.forEach((producto) => {
-            console.log("Producto recibido:", producto); // ✅ Verificar que llega correctamente
-            
-            const row = document.createElement('tr');
+            console.log("Producto recibido:", producto);
 
+            const row = document.createElement('tr');
             row.innerHTML = `
-                <td><input type="checkbox" class="form-check-input"></td>
+                <td><input type="checkbox" class="form-check-input" data-id="${producto.id}"></td>
                 <td>${producto.nombre}</td>
                 <td>${producto.categoria.nombre_categoria || "Sin categoría"}</td>
                 <td>${producto.descripcion}</td>
@@ -127,13 +128,62 @@ function cargarProductos() {
                 <td><img src="${producto.imagenUrl ? producto.imagenUrl : 'https://via.placeholder.com/50'}" 
                     alt="Imagen del Producto" width="50"></td>
             `;
-
             productosTable.appendChild(row);
         });
     })
     .catch(error => console.error("Error al cargar productos:", error));
 }
 
+// ✅ CONFIRMACIÓN ANTES DE ELIMINAR PRODUCTOS
+document.getElementById("btnEliminar").addEventListener("click", function () {
+    const checkboxes = document.querySelectorAll("#productosTable input[type='checkbox']:checked");
+    if (checkboxes.length === 0) {
+        alert("Selecciona al menos un producto para eliminar.");
+        return;
+    }
+
+    if (!confirm("¿Estás seguro de que deseas eliminar los productos seleccionados?")) return;
+
+    checkboxes.forEach((checkbox) => {
+        const id = checkbox.dataset.id;
+        fetch(`http://localhost:8080/api/Producto/${id}`, { method: "DELETE" })
+            .then(response => {
+                if (!response.ok) throw new Error("Error al eliminar el producto.");
+                return response.text();
+            })
+            .then(() => {
+                alert("Producto eliminado correctamente.");
+                cargarProductos();
+            })
+            .catch(error => console.error("Error:", error));
+    });
+});
+
+// ✅ EDICIÓN DE PRODUCTO (YA GUARDA CORRECTAMENTE)
+document.getElementById("btnEditar").addEventListener("click", function () {
+    const checkboxes = document.querySelectorAll("#productosTable input[type='checkbox']:checked");
+    if (checkboxes.length !== 1) {
+        alert("Selecciona un solo producto para editar.");
+        return;
+    }
+
+    const id = checkboxes[0].dataset.id;
+    fetch(`http://localhost:8080/api/Producto/${id}`)
+        .then(response => response.json())
+        .then(producto => {
+            document.getElementById("productName").value = producto.nombre;
+            document.getElementById("category").value = producto.categoria.id_categoria;
+            document.getElementById("productDescription").value = producto.descripcion;
+            document.getElementById("productPrice").value = producto.precio;
+            document.getElementById("productImage").value = producto.imagenUrl;
+
+            document.getElementById("submitBtn").textContent = "Guardar Cambios";
+            document.getElementById("submitBtn").dataset.productId = id;
+        })
+        .catch(error => console.error("Error al obtener producto:", error));
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     cargarProductos();
 });
+
