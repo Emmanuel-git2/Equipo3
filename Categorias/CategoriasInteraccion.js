@@ -149,25 +149,3 @@ productosNivelMid.forEach(product => agregarProducto(product, 'productos_Interme
 productosNivelSenior.forEach(product => agregarProducto(product, 'productos_Avanzado'));
 productosNavidad.forEach(product => agregarProducto(product, 'productos_Navidad'));
 productosAmorAmistad.forEach(product => agregarProducto(product, 'productos_AmorAmistad'));
-
-function agregarEfectoHover() {
-    document.querySelectorAll(".card").forEach(card => {
-        let timeout;
-
-        card.addEventListener("mouseenter", () => {
-            timeout = setTimeout(() => {
-                card.classList.add("expanded");
-            }, 100); // Retraso de 300ms antes de aplicar el efecto
-        });
-
-        card.addEventListener("mouseleave", () => {
-            clearTimeout(timeout); // Cancela el timeout si el mouse sale antes
-            card.classList.remove("expanded");
-        });
-    });
-}
-
-// Ejecutar la función después de agregar los productos al DOM
-document.addEventListener("DOMContentLoaded", () => {
-    agregarEfectoHover();
-});
