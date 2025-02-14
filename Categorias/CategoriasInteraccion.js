@@ -40,18 +40,6 @@ function agregarProducto(item, containerId) {
             </div>
         </div>`;
 
-        document.addEventListener("DOMContentLoaded", () => {
-            document.querySelectorAll(".card").forEach(card => {
-                card.addEventListener("mouseenter", () => {
-                    card.classList.add("expanded");
-                });
-        
-                card.addEventListener("mouseleave", () => {
-                    card.classList.remove("expanded");
-                });
-            });
-        });
-        
 
     // Obtener el contenedor y agregar el producto
     const itemsContainer = document.getElementById(containerId);
@@ -152,22 +140,37 @@ productosAmorAmistad.forEach(product => agregarProducto(product, 'productos_Amor
 
 function agregarEfectoHover() {
     document.querySelectorAll(".card").forEach(card => {
-        let timeout;
+        let timeout; // Almacena el timeout actual para esta tarjeta
+        let debounceTimeout;
+        let isExpanded = false; // Variable para rastrear el estado de la tarjeta
 
         card.addEventListener("mouseenter", () => {
-            timeout = setTimeout(() => {
-                card.classList.add("expanded");
-            }, 100); // Retraso de 300ms antes de aplicar el efecto
+            if (!isExpanded) {
+                debounceTimeout = setTimeout(() => {
+                    card.classList.add("expanded");
+                    isExpanded = true;
+                }, 200); // Espera de 300ms antes de expandir
+            }
         });
 
         card.addEventListener("mouseleave", () => {
-            clearTimeout(timeout); // Cancela el timeout si el mouse sale antes
-            card.classList.remove("expanded");
+            clearTimeout(debounceTimeout); // Cancela el debounce si el mouse sale antes
+            if (isExpanded) {
+                setTimeout(() => {
+                    card.classList.remove("expanded");
+                    isExpanded = false;
+                }, 1100); // Espera de 200ms antes de contraer
+            }
+        });
+
+        card.addEventListener("click", () => {
+            clearTimeout(debounceTimeout); // Evita que el debounce se active si el usuario hace clic antes de que pase el tiempo
+            isExpanded = !isExpanded;
+            card.classList.toggle("expanded");
         });
     });
 }
 
-// Ejecutar la función después de agregar los productos al DOM
 document.addEventListener("DOMContentLoaded", () => {
     agregarEfectoHover();
 });
