@@ -60,22 +60,22 @@ function headerAndFooter() {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ms-3 mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link active" href="../Nosotros/nosotros.html">Nosotros</a>
+                  <a class="nav-link active" href="https://3.147.52.41/Nosotros/nosotros.html">Nosotros</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="../Contacto/contacto.html">Contacto</a>
+                  <a class="nav-link active" href="https://3.147.52.41/Contacto/contacto.html">Contacto</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="../Categorias/categorias.html">Categorías</a>
+                  <a class="nav-link active" href="https://3.147.52.41/Categorias/categorias.html">Categorías</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="../Carrito/carrito.html">Carrito</a>
+                  <a class="nav-link active" href="https://3.147.52.41/Carrito/carrito.html">Carrito</a>
                 </li>
                 ${
                   usuarioActivo?.id_rol_fk === 2
                     ? `
                       <li class="nav-item" id="adminNavItem">
-                        <a class="nav-link active" href="../FormularioProductos/FormularioProductos.html">Formulario Productos</a>
+                        <a class="nav-link active" href="https://3.147.52.41/FormularioProductos/FormularioProductos.html">Formulario Productos</a>
                       </li>
                       `
                     : ""
@@ -171,11 +171,11 @@ function headerAndFooter() {
 }
 
 function redirectToRegister() {
-  window.location.href = "../RegistroUsuarios/RegistroUsuarios.html";
+  window.location.href = "https://3.147.52.41/RegistroUsuarios/RegistroUsuarios.html";
 }
 
 function redirectToLogin() {
-  window.location.href = "../Login/login.html";
+  window.location.href = "https://3.147.52.41/Login/login.html";
 }
 
 headerAndFooter();

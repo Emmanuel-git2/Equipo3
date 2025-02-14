@@ -1,0 +1,15 @@
+footer {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto; /* Empuja el footer al final */
+    position:fixed!
+}
+
+#maintenanceAlert {
+    display: flex;
+    justify-content: center;  
+    align-items: center;      
+    height: 100vh;   
+}
+

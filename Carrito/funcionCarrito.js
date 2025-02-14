@@ -1,5 +1,5 @@
 // Importa 'productos' si está en otro archivo
-import { productos } from '../PaginaInicio/FuncionProductos.js';
+// import { productos } from '../PaginaInicio/FuncionProductos.js';
 console.log('Productos cargados:', productos);
 
 // Función para ajustar la ruta de la imagen
@@ -231,3 +231,7 @@ if (cerrarNotificacion) {
         }
     });
 }
+//Alerta de mantenimeinto 
+window.onload = function() {
+    document.getElementById("maintenanceAlert").style.display = "flex";
+};
