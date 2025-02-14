@@ -65,7 +65,7 @@ btnInicio.addEventListener("click", async function (event) {
 
     // Enviar la solicitud al API de autenticación
     try {
-        const response = await fetch("https://tudominio.com/api/login", {
+        const response = await fetch("http://3.147.52.41/api/login/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -76,7 +76,15 @@ btnInicio.addEventListener("click", async function (event) {
             })
         });
 
-        const data = await response.json();
+        const textResponse = await response.text();
+        console.log("Respuesta cruda del servidor:", textResponse); // Debugging
+
+        let data;
+        try {
+            data = JSON.parse(textResponse); // Intentar parsear como JSON
+        } catch (error) {
+            throw new Error("La respuesta del servidor no es JSON válido.");
+        }
 
         if (response.ok) {
             // Almacenar el token en sessionStorage o localStorage
@@ -91,10 +99,10 @@ btnInicio.addEventListener("click", async function (event) {
             txtPassword.value = "";
 
             // Redirigir a la página de inicio
-            window.location.href = "http://127.0.0.1:5501/PaginaInicio/PaginaInicio.html"; // Cambia la ruta según corresponda
+            window.location.href = "http://3.147.52.41/PaginaInicio/PaginaInicio.html"; // Cambia la ruta según corresponda
         } else {
             // Manejar errores de autenticación
-            generalError.innerText = data.message || "Correo o contraseña incorrectos.";
+            generalError.innerText = data.error || "Correo o contraseña incorrectos.";
             txtEmail.classList.add("input-error");
             txtPassword.classList.add("input-error");
         }
