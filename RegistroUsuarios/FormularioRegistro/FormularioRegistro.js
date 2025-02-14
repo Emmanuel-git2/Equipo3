@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         // Verificar si el correo ya está registrado en la API antes de registrarlo
-        fetch(`http://127.0.0.1:8080/api/usuarios/email/${userData.email}`)
+        fetch(`https://3.147.52.41/api/usuarios/email/${userData.email}`)
             .then(response => {
                 if (response.status === 404) {
                     return registerUser(userData);
@@ -257,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Función para registrar solo si el correo no está registrado
     function registerUser(userData) {
-        return fetch("http://127.0.0.1:8080/api/usuarios/", {
+        return fetch("https://3.147.52.41/api/usuarios/" , {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(userData)

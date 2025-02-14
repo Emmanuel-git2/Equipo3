@@ -41,7 +41,7 @@ const productosEstaticos = [
 productosEstaticos.forEach(producto => agregarProducto(producto));
 
 // ✅ 2️⃣ Luego cargar productos desde la API
-fetch("http://localhost:8080/api/Producto/")
+fetch("https://3.147.52.41/api/Producto/")
     .then(response => response.json())
     .then(data => {
         console.log("Productos recibidos desde la API:", data);
