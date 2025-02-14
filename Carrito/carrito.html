@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito</title>
-    <link rel="stylesheet" href="../Carrito/carrito.css"> <!-- Asegúrate de enlazar tu archivo CSS -->
+    <link rel="stylesheet" href="../Carrito/carrito.css">
 </head>
 <body>
     <!-- Contenedor del encabezado -->
@@ -48,6 +48,15 @@
             </div>
         </div>
         
+        <!-- Ventana de Notificación Personalizada -->
+        <div id="notificacionCompra" class="notificacion-compra oculto">
+            <div class="notificacion-compra-contenido">
+                <h2>Compra Realizada</h2>
+                <p>¡Gracias por tu compra! Tu pedido ha sido procesado.</p>
+                <button id="cerrarNotificacion" class="btn btn-success">Aceptar</button>
+            </div>
+        </div>
+
         <button class="btn btn-primary mt-4" id="seguir-comprando">Seguir Comprando</button>
     </div>
 

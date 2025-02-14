@@ -44,44 +44,26 @@ export const productos = [
     { name:'Piolín Cupido', img:'ImagenesCategorias/Piolin0.jpg', description:'Personaje Piolín en versión cupido', price:3450, category: 'AmoryAmistad' },
 ];
 
-export function agregarProducto(item, containerId) {
+// Función para agregar un producto al contenedor dinámicamente
+function agregarProducto(item, containerId = "listProducts") {
     if (!item.name || !item.img || !item.description || typeof item.price !== "number") {
         console.error('Producto inválido:', item);
         return;
     }
 
-    const carruselId = `carousel-${containerId}-${item.name.replace(/\s+/g, '')}`;
     const itemHTML = `
         <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4 d-flex justify-content-center">
-            <div class="card" style="width: 22rem;">
-                <div id="${carruselId}" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="${item.img}" class="d-block w-100" alt="${item.name}" style="height: 250px; object-fit: cover;">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="${item.img}" class="d-block w-100" alt="${item.name}" style="height: 250px; object-fit: cover;">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="${item.img}" class="d-block w-100" alt="${item.name}" style="height: 250px; object-fit: cover;">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#${carruselId}" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#${carruselId}" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    </button>
-                </div>
+            <div class="card" style="width: 18rem;">
+                <img src="${item.img}" class="card-img-top" alt="${item.name}" style="height: 200px; object-fit: cover;">
                 <div class="card-body text-center">
                     <h5 class="card-title">${item.name}</h5>
                     <p class="card-text">${item.description}</p>
-                    <p class="card-text"><strong id="title-text">Precio:</strong> $${item.price.toFixed(2)}</p>
-                    <a href="#" class="btn add-to-cart" data-name="${item.name}" data-price="${item.price}" data-img="${item.img}" data-category="${item.category}">Agregar</a>
+                    <p class="card-text"><strong>Precio:</strong> ${item.price ? `$${item.price.toFixed(2)}` : 'No especificado'}</p>
+                    <a href="#" class="btn btn-primary add-to-cart" data-name="${item.name}" data-price="${item.price}" data-img="${item.img}" data-category="${item.category}">Agregar</a>
                 </div>
             </div>
         </div>`;
-
+    
     const itemsContainer = document.getElementById(containerId);
     if (itemsContainer) {
         itemsContainer.insertAdjacentHTML('beforeend', itemHTML);
@@ -90,8 +72,8 @@ export function agregarProducto(item, containerId) {
     }
 }
 
-// Función para mostrar productos específicos en la página de inicio
-export function mostrarProductosInicio() {
+// Función para mostrar productos estáticos en la página de inicio
+function mostrarProductosInicio() {
     const productosInicio = [
         { name: 'Bambú', img: 'imagenes/Bambu.webp', description: 'Bambú de la suerte', price: 200.00, category: 'Principiante' },
         { name: 'Dumbo', img: 'imagenes/dumbo.webp', description: 'Dumbo de Disney', price: 280.00, category: 'Principiante' },
@@ -102,36 +84,37 @@ export function mostrarProductosInicio() {
         { name: 'Miniorquídea', img: 'imagenes/orquidea.webp', description: 'Miniorquídea color melón', price: 260.00, category: 'Principiante' },
         { name: 'Rosas', img: 'imagenes/rosas.webp', description: 'Rosas', price: 200.00, category: 'Principiante' },
         { name: 'Arreglo Floral', img: 'imagenes/arreglo.webp', description: 'Arreglo floral de varios colores', price: 450.00, category: 'Principiante' },
-        { name: 'Ciruelo', img: 'imagenes/ciruelo.webp', description: 'Flor de ciruelo', price: 199.00, category: 'Principiante' },
+        { name: 'Ciruelo', img: 'imagenes/ciruelo.webp', description: 'Flor de Ciruelo', price: 199.00, category: 'Principiante' }
     ];
 
-    productosInicio.forEach(producto => agregarProducto(producto, 'productos_inicio'));
+    productosInicio.forEach(producto => agregarProducto(producto));
 }
 
-// Función para mostrar productos dinámicos (almacenados en localStorage)
-function mostrarProductosDinamicos() {
-    const productos = JSON.parse(localStorage.getItem("productos")) || [];
-
-    if (productos.length === 0) {
-        console.log("No hay productos dinámicos en localStorage.");
-        return;
-    }
-
-    productos.forEach((producto) => {
-        agregarProducto({
-            name: producto.name,
-            img: producto.image,
-            description: producto.description,
-            price: producto.price,
-            category: producto.category
-        }, 'productos_dinamicos');
-    });
-}
-
-// Llamar a la función para mostrar productos de inicio y dinámicos al cargar la página
-document.addEventListener("DOMContentLoaded", function () {
+// Función para cargar productos desde la API y mostrar en la página de inicio
+function cargarProductosDesdeAPI() {
+    // Primero mostrar los productos estáticos
     mostrarProductosInicio();
-    mostrarProductosDinamicos();
+
+    // Luego cargar productos desde la API
+    fetch("http://localhost:8080/api/Producto/")
+        .then(response => response.json())
+        .then(data => {
+            console.log("Productos recibidos desde la API:", data);
+            data.forEach(producto => {
+                agregarProducto({
+                    name: producto.nombre,
+                    img: producto.imagenUrl,  // Asegúrate de que el campo de la API se llama así
+                    description: producto.descripcion,
+                    price: producto.precio
+                });
+            });
+        })
+        .catch(error => console.error("Error al obtener productos de la API:", error));
+}
+
+// Llamar a las funciones para mostrar productos al cargar la página
+document.addEventListener("DOMContentLoaded", function () {
+    cargarProductosDesdeAPI();
     document.body.addEventListener('click', (event) => {
         if (event.target.classList.contains('add-to-cart')) {
             event.preventDefault(); // Prevenir comportamiento predeterminado del enlace
@@ -163,41 +146,25 @@ function añadirAlCarrito(nombre, precio, img, category) {
     actualizarContador(); // Actualizar estado del carrito después de agregar un producto
 }
 
-function obtenerCategoriaId(category) {
-    switch (category) {
-        case 'Niños':
-            return 'productos_ninos';
-        case 'Adolescentes':
-            return 'productos_adolescentes';
-        case 'Adultos':
-            return 'productos_adultos';
-        case 'Principiante':
-            return 'productos_principiante';
-        case 'Intermedio':
-            return 'productos_intermedio';
-        case 'Avanzada':
-            return 'productos_avanzado';
-        case 'Navidad':
-            return 'productos_navidad';
-        case 'AmoryAmistad':
-            return 'productos_amoramistad';
-        default:
-            return '';
-    }
+// Función para mostrar notificaciones
+function mostrarNotificacion(mensaje) {
+    const notificacion = document.getElementById('notification');
+    notificacion.textContent = mensaje;
+    notificacion.classList.remove('hidden');
+    notificacion.style.display = 'block';
+    setTimeout(() => {
+        notificacion.classList.add('hidden');
+        notificacion.style.display = 'none';
+    }, 3000); // Oculta la notificación después de 3 segundos
 }
 
-// Agregar productos a las categorías correspondientes en 'categorias.html'
-document.addEventListener("DOMContentLoaded", function () {
-    // Verifica si estamos en 'categorias.html' comprobando si existe uno de los contenedores clave
-    if (document.getElementById('productos_ninos')) {
-        productos.forEach(producto => {
-            const containerId = obtenerCategoriaId(producto.category);
-            if (containerId) {
-                agregarProducto(producto, containerId);
-            }
-        });
-    } else if (document.getElementById('productos_inicio')) {
-        // Si estamos en 'index.html', mostrar productos de inicio
-        mostrarProductosInicio();
+// Función para actualizar el contador del carrito
+function actualizarContador() {
+    const contadorCarrito = document.getElementById('contador-carrito');
+    const imagenCarrito = document.querySelector('a[href="../Carrito/carrito.html"] img');
+    if (contadorCarrito) {
+        const totalItems = carrito.reduce((sum, item) => sum + item.quantity, 0);
+        contadorCarrito.textContent = `(${totalItems})`;
+        imagenCarrito.src = totalItems === 0 ? "../Carrito/Imagenes/Carritovacio.png" : "../Carrito/Imagenes/Carritolleno.png";
     }
-});
+}

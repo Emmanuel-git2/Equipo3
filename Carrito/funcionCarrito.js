@@ -1,10 +1,19 @@
-// funcionCarrito.js
-
 // Importa 'productos' si está en otro archivo
 import { productos } from '../PaginaInicio/FuncionProductos.js';
+console.log('Productos cargados:', productos);
+
+// Función para ajustar la ruta de la imagen
+function ajustarRutaImagen(rutaImagen, carpeta) {
+    console.log(`Ajustando ruta para: ${rutaImagen} en carpeta: ${carpeta}`);
+    if (rutaImagen.startsWith('http') || rutaImagen.startsWith('/')) {
+        return rutaImagen;
+    }
+    return `../${carpeta}/${rutaImagen}`;
+}
 
 // Array para almacenar los artículos del carrito
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+console.log('Carrito cargado:', carrito);
 
 // Función para añadir al carrito
 export function añadirAlCarrito(name, price, img, category) {
@@ -19,18 +28,26 @@ export function añadirAlCarrito(name, price, img, category) {
     actualizarCarrito(); // Actualiza el carrito y muestra recomendaciones
 }
 
-// Función para actualizar el contador del carrito
+// Función para actualizar el contador del carrito y cambiar la imagen del carrito
 export function actualizarContador() {
     const contadorCarrito = document.getElementById('contador-carrito');
+    const imagenCarrito = document.querySelector('a[href="../Carrito/carrito.html"] img');
     if (contadorCarrito) {
         const totalItems = carrito.reduce((sum, item) => sum + item.quantity, 0);
         contadorCarrito.textContent = `(${totalItems})`;
+        imagenCarrito.src = totalItems === 0 ? "../Carrito/Imagenes/Carritovacio.png" : "../Carrito/Imagenes/Carritolleno.png";
+    } else {
+        console.error("El elemento 'contador-carrito' no existe");
     }
 }
 
 // Función para mostrar notificaciones
 export function mostrarNotificacion(mensaje) {
     const notificacion = document.getElementById('notification');
+    if (!notificacion) {
+        console.error("El elemento 'notification' no existe");
+        return;
+    }
     notificacion.textContent = mensaje;
     notificacion.classList.remove('hidden');
     notificacion.style.display = 'block';
@@ -42,28 +59,33 @@ export function mostrarNotificacion(mensaje) {
 
 // Función para mostrar productos recomendados
 function mostrarProductosRecomendados() {
+    console.log('Función mostrarProductosRecomendados llamada');
     const productosRecomendadosContainer = document.getElementById('productos-recomendados');
     if (!productosRecomendadosContainer) {
         console.error("El contenedor 'productos-recomendados' no existe");
         return;
     }
 
-    // Obtener las categorías de los productos en el carrito
     const categoriasEnCarrito = [...new Set(carrito.map(item => item.category))];
+    console.log('Categorías en carrito:', categoriasEnCarrito);
 
-    // Filtrar productos que NO están en el carrito y pertenecen a las mismas categorías
-    const productosFiltrados = productos
-        .filter(producto => 
-            categoriasEnCarrito.includes(producto.category) && 
-            !carrito.some(item => item.name === producto.name)
-        )
-        .slice(0, 4); // Limita a 4 productos recomendados
+    let productosFiltrados;
+    if (categoriasEnCarrito.length === 0) {
+        productosFiltrados = productos.slice(0, 4); // Limita a 4 productos recomendados
+    } else {
+        productosFiltrados = productos
+            .filter(producto => 
+                categoriasEnCarrito.includes(producto.category) && 
+                !carrito.some(item => item.name === producto.name)
+            )
+            .slice(0, 4); // Limita a 4 productos recomendados
+    }
 
-    // Generar el HTML para los productos recomendados
+    console.log('Productos recomendados:', productosFiltrados);
     productosRecomendadosContainer.innerHTML = productosFiltrados.length > 0
         ? productosFiltrados.map(producto => `
             <div class="producto-recomendado">
-                <img src="${ajustarRutaImagen(producto.img)}" alt="${producto.name}">
+                <img src="${ajustarRutaImagen(producto.img, 'PaginaInicio/imagenes')}" alt="${producto.name}">
                 <p>${producto.name}</p>
                 <p>Precio: $${producto.price.toFixed(2)}</p>
                 <button class="btn btn-secondary add-to-cart" data-name="${producto.name}" data-price="${producto.price}" data-img="${producto.img}" data-category="${producto.category}">Agregar al Carrito</button>
@@ -72,18 +94,34 @@ function mostrarProductosRecomendados() {
         : '<p>No hay productos recomendados para estas categorías.</p>';
 }
 
-// Función para ajustar la ruta de la imagen
-function ajustarRutaImagen(rutaImagen) {
-    // Si la ruta ya es absoluta, regresarla tal cual
-    if (rutaImagen.startsWith('http') || rutaImagen.startsWith('/')) {
-        return rutaImagen;
+// Función para renderizar los productos
+function renderizarProductos() {
+    const listProductsContainer = document.getElementById('listProducts');
+    if (!listProductsContainer) {
+        console.error("El contenedor 'listProducts' no existe");
+        return;
     }
-    // Ajustamos la ruta de imagen relativa
-    return '../' + rutaImagen; // Desde carrito.html, subimos un nivel para acceder a las imágenes
+
+    const productosHTML = productos.map(producto => `
+        <div class="col-md-3 mb-3">
+            <div class="card">
+                <img src="${ajustarRutaImagen(producto.img, 'PaginaInicio/imagenes')}" class="card-img-top" alt="${producto.name}">
+                <div class="card-body">
+                    <h5 class="card-title">${producto.name}</h5>
+                    <p class="card-text">Precio: $${producto.price.toFixed(2)}</p>
+                    <button class="btn btn-primary add-to-cart" data-name="${producto.name}" data-price="${producto.price}" data-img="${producto.img}" data-category="${producto.category}">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    listProductsContainer.innerHTML = productosHTML;
 }
 
 // Escuchar eventos al cargar el DOM
 document.addEventListener("DOMContentLoaded", () => {
+    console.log('DOM cargado');
+    renderizarProductos(); // Llamar a la función para renderizar los productos
     actualizarContador();
     actualizarCarrito(); // Carga los productos en el carrito al iniciar la página
 
@@ -125,7 +163,7 @@ function actualizarCarrito() {
             itemDiv.innerHTML = `
                 <div class="row g-0">
                     <div class="col-md-4 d-flex align-items-center">
-                        <img src="${ajustarRutaImagen(item.img)}" class="img-fluid rounded-start" alt="${item.name}" style="width: 100%; object-fit: cover; border: 1px solid #ddd;">
+                        <img src="${ajustarRutaImagen(item.img, 'Categorias/ImagenesCategorias')}" class="img-fluid rounded-start" alt="${item.name}" style="width: 100%; object-fit: cover; border: 1px solid #ddd;">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -170,9 +208,26 @@ function eliminarItem(index) {
 
 // Función para finalizar la compra
 function finalizarCompra() {
-    alert('¡Gracias por tu compra! Tu pedido ha sido procesado.');
+    const notificacionCompra = document.getElementById('notificacionCompra');
+    if (!notificacionCompra) {
+        console.error("El elemento 'notificacionCompra' no existe");
+        return;
+    }
+    notificacionCompra.classList.remove('oculto');
+
     carrito = [];
     localStorage.setItem('carrito', JSON.stringify(carrito));
     actualizarContador();
     actualizarCarrito(); // Actualiza el carrito y muestra recomendaciones
+}
+
+// Cerrar la notificación personalizada
+const cerrarNotificacion = document.getElementById('cerrarNotificacion');
+if (cerrarNotificacion) {
+    cerrarNotificacion.addEventListener('click', () => {
+        const notificacionCompra = document.getElementById('notificacionCompra');
+        if (notificacionCompra) {
+            notificacionCompra.classList.add('oculto');
+        }
+    });
 }

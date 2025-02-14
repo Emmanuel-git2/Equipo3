@@ -1,9 +1,8 @@
 /*Documento CSS para pagina de BrickMania Pagina de Inicio*/
 
-
 h1, h2, h3, h4, h5, h6 { 
     font-family: 'Grown', serif;
-    font-style:bold; 
+    font-style: bold; 
 }
 
 body { 
@@ -88,8 +87,6 @@ body {
     background-color: white; 
 }
 
-   
-
 /* Aislar estilos de los botones */
 .navbar-nav .nav-item .btn-entrar, .navbar-nav .nav-item .btn-registrarse {
     background-color: inherit !important; 
@@ -98,11 +95,10 @@ body {
     transition: none !important; 
 }
 
-div.container{
+div.container {
     background-color: #BF60A6;
-    
 }
-footer{
+footer {
     background-color: #BF60A6;
 }
 
@@ -111,14 +107,14 @@ footer{
     color: #F22E2E;
     font-size: 60px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    text-shadow: 2px 2px 2px #5a5a65
+    text-shadow: 2px 2px 2px #5a5a65;
 }
 #TituloDos {
     color: #F2E527;
     font-size: 60px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
-p{
+p {
     font-size: 20px;
 }
 
@@ -129,29 +125,28 @@ p{
     font-weight: bold;
 }
 
-main{
+main {
     margin: 45px;
     margin-right: 90px;
 }
 
-.quienS{
+.quienS {
     font-weight: bold;
     font-size: 30px;
 }
-
-
 
 :root {
     --background-rosa: #bf60a6;
     --background-amarillo: #f2cc0f;
     --button-color: #bf60a6;
-  }
-  .navbar {
+}
+
+.navbar {
     background-color: var(--background-amarillo);
     font-family: "Montserrat";
-  }
+}
   
-  .button {
+.button {
     background-color: var(--button-color);
     color: white;
     border: 2px solid white;
@@ -159,33 +154,30 @@ main{
     border-radius: 5px; 
     padding: 6px 12px;
     margin-right: 4px;
-    
-  }
+}
   
-  .footer {
+.footer {
     background-color: var(--background-rosa);
     box-sizing: content-box;
+}
   
-  }
-  
-  .footer-icon{
+.footer-icon {
     color: white;
     font-size: 2rem;
     padding-inline: 20px;
     border-color: transparent;
     background-color: transparent;
-  }
+}
   
-  .p-footer {
-  color: white;
-  }
+.p-footer {
+    color: white;
+}
   
-  #div-generation {
+#div-generation {
     align-items: center;
-  }
+}
 
-
-  .card-img-top {
+.card-img-top {
     height: 200px; 
     object-fit: cover; 
     width: 100%; 
@@ -195,13 +187,12 @@ img[alt="Fondo Azul"] {
     border-radius: 0; /* Quitar bordes redondeados */
 }
 
-#Eslogan{
+#Eslogan {
     color: white;
     text-shadow: 2px 2px 2px #5a5858;
 }
 
-/*estilo cards*/
-
+/* Estilo para las cards */
 #prodDisponible h2 {
     font-family: 'Montserrat', sans-serif; 
     font-size: 3rem;
@@ -211,7 +202,7 @@ img[alt="Fondo Azul"] {
     margin-bottom: 30px; 
 }
 
-#contenedorCards .card {
+#listProducts .card {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     overflow: hidden;
@@ -221,14 +212,13 @@ img[alt="Fondo Azul"] {
     flex-direction: column;
     justify-content: space-between;
     min-height: 500px;
-    
 }
 
-#contenedorCards .card:hover {
+#listProducts .card:hover {
     transform: translateY(-10px); /* Eleva la card al pasar el ratón */
 }
 
-#contenedorCards .card-img-top {
+#listProducts .card-img-top {
     height: 250px; 
     object-fit: cover; 
     width: 100%; 
@@ -236,7 +226,7 @@ img[alt="Fondo Azul"] {
     display: block;
 }
 
-#contenedorCards .card-body {
+#listProducts .card-body {
     background-color: #f9f9f9; /* Fondo claro para el cuerpo de la card */
     padding: 15px;
     display: flex;
@@ -246,7 +236,7 @@ img[alt="Fondo Azul"] {
     flex-grow: 1;
 }
 
-#contenedorCards .card-title {
+#listProducts .card-title {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.2rem;
     color: var(--background-rosa);
@@ -258,7 +248,7 @@ img[alt="Fondo Azul"] {
     position: relative;
 }
 
-#contenedorCards .card-title::after {
+#listProducts .card-title::after {
     content: '';
     display: block;
     width: 50%; 
@@ -267,17 +257,17 @@ img[alt="Fondo Azul"] {
     margin: 5px auto 0 auto; 
 }
 
-#contenedorCards .card-text {
+#listProducts .card-text {
     font-size: 1rem;
     color: #555555; /* Color gris claro */
     margin-bottom: 10px;
 }
 
-#contenedorCards .card-text strong {
+#listProducts .card-text strong {
     color: #BF60A6;
 }
 
-#contenedorCards .card .btn {
+#listProducts .card .btn {
     background-color: #5CC8F2;
     border-color: #5CC8F2;
     color: white;
@@ -289,20 +279,19 @@ img[alt="Fondo Azul"] {
     transition: background-color 0.3s, color 0.3s;
 }
 
-#contenedorCards .card .btn:hover {
+#listProducts .card .btn:hover {
     background-color: #4ab5d9;
     border-color: #4ab5d9;
 }
 
 /* Contenedores y márgenes */
-#contenedorCards {
+#listProducts {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     margin-top: 30px;
 }
 
-#contenedorCards .col-12, #contenedorCards .col-sm-6, #contenedorCards .col-md-4, #contenedorCards .col-lg-4 {
+#listProducts .col-12, #listProducts .col-sm-6, #listProducts .col-md-4, #listProducts .col-lg-4 {
     margin-bottom: 30px;
 }
-

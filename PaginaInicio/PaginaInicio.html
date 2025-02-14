@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BrickManía</title>
     <!-- Horizon y Montserrat Classic -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,79 +26,70 @@
     <link rel="stylesheet" href="./PaginaInicio.css">
 </head>
 <body>
-  <!--Titulo-->
+  <!-- Título -->
   <div class="card text">
     <img src="./imagenes/Inspirational Gradient Desktop Background.png" class="card-img" alt="Fondo Azul" height="210px">
     <div class="card-img-overlay">
       <h5 class="card-title" id="TituloUno">Brick<span id="TituloDos">Manía</span></h5>
       <p class="card-text" id="Eslogan">Construye tu creatividad</p>
-      <button type="button" class="btn btn-primary">Entrar</button><span> </span><button type="button" class="btn btn-dark">Registrar</button>
+      <button type="button" class="btn btn-primary">Entrar</button><button type="button" class="btn btn-dark">Registrar</button>
     </div>
   </div>
 
-  <!--Carrusel-->
+  <!-- Carrusel -->
   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img src="./imagenes/BrickClub_group_of_kids.jpg" class="d-block w-100" alt="Club de bloques">
       </div>
       <div class="carousel-item">
-        <img src="./imagenes/rick-mason-2FaCKyEEtis-unsplash.avif"class="d-block w-100" alt="Jugando">
+        <img src="./imagenes/rick-mason-2FaCKyEEtis-unsplash.avif" class="d-block w-100" alt="Jugando">
       </div>
       <div class="carousel-item">
         <img src="./imagenes/ImagenBloques.png" class="d-block w-100" alt="Imagen Bloques">
       </div>
     </div>
-  
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="carousel-control-prev-icon"></span>
       <span class="visually-hidden">Previous</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="carousel-control-next-icon"></span>
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-  <!--Más-->
- <main>
+  
+  <!-- Sección de productos -->
+  <main>
     <p class="quienS">Quienes Somos</p>
-    <p>Somos tu tienda online preferida, donde encontrarás todo tipo de bloques de construcción. 
-      Ponemos a tu alcance todos los diseños que no has podido encontrar, desde los más comunes 
-      hasta ediciones especiales. </p>
-      
-      <div class="container-fluid mt-5">
-        <div class="container-fluid" id="prodDisponible">
-          <h2>Productos Destacados</h2>
-        </div>
-        
-        <div class="container-fluid" id="productos_inicio">
-          <div class="row" id="listProducts">
-              <!-- Las tarjetas se insertarán aquí -->
-          </div>
-        </div>
-        
+    <p>Somos tu tienda online preferida, donde encontrarás todo tipo de bloques de construcción. Ponemos a tu alcance todos los diseños que no has podido encontrar, desde los más comunes hasta ediciones especiales.</p>
+    <div class="container-fluid mt-5">
+      <div class="container-fluid" id="prodDisponible">
+        <h2>Productos Destacados</h2>
       </div>
+      <div class="container-fluid">
+        <div class="row" id="listProducts">
+            <!-- Los productos se insertarán aquí -->
+        </div>
+      </div>
+    </div>
    </main>
 
     <!-- Cargar scripts al final del cuerpo para una carga más rápida -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../Header_y_footer/header_y_footer.js"></script>
-    <!-- <script type='module' src="../Categorias/CategoriasInteraccion.js"></script> -->
     <script type="module" src="../Carrito/funcionCarrito.js"></script>
+    <script type="module" src="../Categorias/CategoriasInteraccion.js"></script>
     <script type="module" src="./FuncionProductos.js"></script>
 
     <!-- Elemento para notificaciones -->
     <div id="notification" class="notification hidden"></div>
 
     <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
