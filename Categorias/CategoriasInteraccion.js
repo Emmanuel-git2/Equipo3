@@ -35,7 +35,7 @@ function agregarProducto(item, containerId) {
                     <h5 class="card-title">${item.name}</h5>
                     <p class="card-text">${item.description}</p>
                     <p class="card-text"><strong id="title-text">Precio:</strong> $${item.price.toFixed(2)}</p>
-                    <a href="../Carrito/carrito.html" class="btncards">Agregar</a>
+                    <a href="https://3.147.52.41/Carrito/carrito.html" class="btncards">Agregar</a>
                 </div>
             </div>
         </div>`;
@@ -137,6 +137,7 @@ productosNivelMid.forEach(product => agregarProducto(product, 'productos_Interme
 productosNivelSenior.forEach(product => agregarProducto(product, 'productos_Avanzado'));
 productosNavidad.forEach(product => agregarProducto(product, 'productos_Navidad'));
 productosAmorAmistad.forEach(product => agregarProducto(product, 'productos_AmorAmistad'));
+<<<<<<< HEAD
 
 function agregarEfectoHover() {
     document.querySelectorAll(".card").forEach(card => {
@@ -174,3 +175,5 @@ function agregarEfectoHover() {
 document.addEventListener("DOMContentLoaded", () => {
     agregarEfectoHover();
 });
+=======
+>>>>>>> 6467f56f59d45d9507a453bcb5d0220e0500b352

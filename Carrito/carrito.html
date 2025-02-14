@@ -4,19 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito</title>
-    <link rel="stylesheet" href="../Carrito/carrito.css">
+    <!-- <link rel="stylesheet" href="../Carrito/carrito.css"> -->
+    <link rel="stylesheet" href="../Carrito/carritoalert.css">
 </head>
 <body>
-    <!-- Contenedor del encabezado -->
+<!-- Alerta de mantenimiento -->
+<div id="maintenanceAlert" class="maintenance-alert">
+    <img src="./mantenimiento.jpeg" alt="Mantenimiento" class="maintenance-image">
+    <p class="alert-text">¡Estamos en mantenimiento! Vuelve pronto.</p>
+</div>
+
+    <!-- Contenedor del encabezado
     <div id="header-placeholder"></div>
 
-    <!-- Contenido de la página -->
+    Contenido de la página
     <div class="container">
         <div class="row">
             <div class="col-md-8">
                 <h1 class="my-4">Carrito de Compras</h1>
 
-                <!-- Carrito vacío -->
+                Carrito vacío 
                 <div id="carrito-vacio" class="row" style="display: none;">
                     <div class="col-md-12">
                         <p>Tu carrito está vacío.</p>
@@ -24,9 +31,9 @@
                     </div>
                 </div>
 
-                <!-- Carrito con productos -->
+                 Carrito con productos
                 <div id="carrito-items">
-                    <!-- Los artículos del carrito se mostrarán aquí -->
+                    Los artículos del carrito se mostrarán aquí 
                 </div>
             </div>
             <div class="col-md-4">
@@ -38,17 +45,16 @@
                     <button class="btn btn-primary mt-4" id="finalizar-compra">Pagar</button>
                 </div>
 
-                <!-- Productos recomendados -->
+                 Productos recomendados 
                 <div id="recomendaciones">
                     <h3>Productos que te pueden interesar</h3>
                     <div id="productos-recomendados">
-                        <!-- Los productos recomendados se insertarán aquí -->
+                        
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Ventana de Notificación Personalizada -->
+      
         <div id="notificacionCompra" class="notificacion-compra oculto">
             <div class="notificacion-compra-contenido">
                 <h2>Compra Realizada</h2>
@@ -58,13 +64,13 @@
         </div>
 
         <button class="btn btn-primary mt-4" id="seguir-comprando">Seguir Comprando</button>
-    </div>
+    </div> -->
 
-    <audio id="sonidoPago" src="./sonidoPago.mp3"></audio>
+    <!-- <audio id="sonidoPago" src="./sonidoPago.mp3"></audio> -->
     <!-- Contenedor del pie de página -->
-    <div id="footer-placeholder"></div>
+    <!-- <div id="footer-placeholder"></div> -->
 
     <script src="../Header_y_footer/header_y_footer.js"></script>
-    <script type="module" src="./funcionCarrito.js"></script>
+    <!-- <script type="module" src="./funcionCarrito.js"></script> -->
 </body>
 </html>

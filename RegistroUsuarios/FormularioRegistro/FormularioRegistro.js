@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         // Verificar si el correo ya está registrado en la API antes de registrarlo
-        fetch(`https://3.147.52.41/api/usuarios/email/${userData.email}`)
+        fetch(`/api/usuarios/email/${userData.email}`)
             .then(response => {
                 if (response.status === 404) {
                     return registerUser(userData);
@@ -257,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Función para registrar solo si el correo no está registrado
     function registerUser(userData) {
-        return fetch("https://3.147.52.41/api/usuarios/" , {
+        return fetch("/api/usuarios/" , {s
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(userData)
@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Función para redirigir al login cuando el usuario hace clic en "Ir al Login"
     document.querySelectorAll(".redirect-Button").forEach(button => {
         button.addEventListener("click", () => {
-            window.location.href = "../Login/login.html";
+            window.location.href = "http://3.147.52.41/Login/login.html";
         });
     });
 

@@ -84,7 +84,7 @@ document.getElementById('submitBtn').addEventListener('click', function (event) 
         imagenUrl: imageField.value.trim()
     };
 
-    const url = idProducto ? `https://3.147.52.41/api/Producto/${idProducto}` : "http://localhost:8080/api/Producto/";
+    const url = idProducto ? `https://3.147.52.41/api/Producto/${idProducto}` : "https://3.147.52.41/api/Producto/";
     const method = idProducto ? "PUT" : "POST";
 
     fetch(url, {
@@ -107,7 +107,7 @@ document.getElementById('submitBtn').addEventListener('click', function (event) 
 });
 
 function cargarProductos() {
-    fetch("http://localhost:8080/api/Producto/")
+    fetch("https://3.147.52.41/api/Producto/")
     .then(response => response.json())
     .then(data => {
         console.log("Productos recibidos:", data);
