@@ -49,43 +49,25 @@ body {
     color: #007bff;
 }
 
-<<<<<<< HEAD
-/* Estilo general de las cards */
-.card {
-    transition: transform 0.3s ease-in-out;
-    cursor: pointer; /* Cambié a pointer para indicar que es interactivo */
-}
-=======
 /*Expander las cards al pasar el mouse*/
 /* .card {
     transition: transform 0.3s ease-in-out;
     cursor:auto;
 } */
->>>>>>> 6467f56f59d45d9507a453bcb5d0220e0500b352
 
 /* Estilo al pasar el mouse por encima de las cards */
 .card:hover {
     transform: scale(1.1);
 }
 
-<<<<<<< HEAD
-/* Estilo para las cards expandidas */
-.card.expanded {
-=======
 /* .card.expanded {
->>>>>>> 6467f56f59d45d9507a453bcb5d0220e0500b352
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1.5);
     z-index: 1000;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
-<<<<<<< HEAD
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Añadí transición para box-shadow */
-}
-=======
 } */
->>>>>>> 6467f56f59d45d9507a453bcb5d0220e0500b352
 
 /*Estilos para las cards de catgerias*/
 .btncards {
