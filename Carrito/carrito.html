@@ -5,72 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito</title>
     <!-- <link rel="stylesheet" href="../Carrito/carrito.css"> -->
-    <link rel="stylesheet" href="../Carrito/carritoalert.css">
+    <link rel="stylesheet" href="./Carrito.css">
 </head>
 <body>
 <!-- Alerta de mantenimiento -->
-<div id="maintenanceAlert" class="maintenance-alert">
+<!-- <div id="maintenanceAlert" class="maintenance-alert">
     <img src="./mantenimiento.jpeg" alt="Mantenimiento" class="maintenance-image">
     <p class="alert-text">¡Estamos en mantenimiento! Vuelve pronto.</p>
-</div>
-
-    <!-- Contenedor del encabezado
-    <div id="header-placeholder"></div>
-
-    Contenido de la página
+</div>Contenedor del encabezado
+    <div id="header-placeholder"></div> -->
     <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <h1 class="my-4">Carrito de Compras</h1>
+        <h1>Carrito de Compras</h1>
 
-                Carrito vacío 
-                <div id="carrito-vacio" class="row" style="display: none;">
-                    <div class="col-md-12">
-                        <p>Tu carrito está vacío.</p>
-                        <button class="btn btn-primary" id="Ir-a-ver-el-Catálogo">Ir a ver el Catálogo</button>
-                    </div>
-                </div>
-
-                 Carrito con productos
-                <div id="carrito-items">
-                    Los artículos del carrito se mostrarán aquí 
-                </div>
-            </div>
-            <div class="col-md-4">
-                <h2>Resumen del Pedido</h2>
-                <div id="total-carrito" style="display: none;">
-                    <h3>Precio Total</h3>
-                    <p id="precio-total">= n Productos</p>
-                    <p id="precio-total-valor">= $ Productos</p>
-                    <button class="btn btn-primary mt-4" id="finalizar-compra">Pagar</button>
-                </div>
-
-                 Productos recomendados 
-                <div id="recomendaciones">
-                    <h3>Productos que te pueden interesar</h3>
-                    <div id="productos-recomendados">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-      
-        <div id="notificacionCompra" class="notificacion-compra oculto">
-            <div class="notificacion-compra-contenido">
-                <h2>Compra Realizada</h2>
-                <p>¡Gracias por tu compra! Tu pedido ha sido procesado.</p>
-                <button id="cerrarNotificacion" class="btn btn-success">Aceptar</button>
-            </div>
+        <!-- Mensaje si el carrito está vacío -->
+        <div id="carrito-vacio" class="alert alert-info" style="display: none;">
+            <p>Tu carrito está vacío.</p>
+            <a href="categorias.html" class="btn btn-primary">Ir al catálogo</a>
         </div>
 
-        <button class="btn btn-primary mt-4" id="seguir-comprando">Seguir Comprando</button>
-    </div> -->
+        <!-- Productos en el carrito -->
+        <div id="carrito-items"></div>
 
-    <!-- <audio id="sonidoPago" src="./sonidoPago.mp3"></audio> -->
-    <!-- Contenedor del pie de página -->
-    <!-- <div id="footer-placeholder"></div> -->
+        <!-- Resumen del Pedido -->
+        <div id="resumen-carrito">
+            <h2>Resumen del Pedido</h2>
+            <p id="total-carrito">Total: <span id="precio-total">$0.00</span></p>
+            <button id="finalizar-compra" class="btn btn-success">Finalizar Compra</button>
+        </div>
 
+        <!-- Productos recomendados -->
+        <div id="productos-recomendados">
+            <h3>Te puede interesar</h3>
+            <div id="recomendaciones"></div>
+        </div>
+    </div>
+
+    <audio id="sonidoPago" src="./sonidoPago.mp3"></audio>
+    <div id="footer-placeholder"></div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../Header_y_footer/header_y_footer.js"></script>
-    <!-- <script type="module" src="./funcionCarrito.js"></script> -->
+    <script src="FuncionProductos.js"></script>
+
 </body>
 </html>
